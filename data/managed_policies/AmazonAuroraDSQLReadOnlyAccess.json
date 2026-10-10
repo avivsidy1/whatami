@@ -1,0 +1,129 @@
+{
+  "access_levels": [
+    "List",
+    "Read"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AmazonAuroraDSQLReadOnlyAccess",
+  "createdate": "2026-05-13T18:57:20+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "dsql:GetClusterPolicy",
+          "dsql:GetCluster",
+          "dsql:GetVpcEndpointServiceName",
+          "dsql:ListClusters",
+          "dsql:ListTagsForResource",
+          "dsql:GetStream",
+          "dsql:ListStreams"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "DsqlReadOnlyPermissions"
+      },
+      {
+        "Action": [
+          "cloudwatch:GetMetricData"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "RelatedServicesPermissions"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Read",
+      "action": "dsql:GetClusterPolicy",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:GetClusterPolicy",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dsql:GetCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:GetCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dsql:GetVpcEndpointServiceName",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:GetVpcEndpointServiceName",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "dsql:ListClusters",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:ListClusters",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dsql:ListTagsForResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dsql:GetStream",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:GetStream",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "dsql:ListStreams",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:ListStreams",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "cloudwatch:GetMetricData",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloudwatch:GetMetricData",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AmazonAuroraDSQLReadOnlyAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-05-13T18:57:20+00:00",
+  "version": "v10"
+}

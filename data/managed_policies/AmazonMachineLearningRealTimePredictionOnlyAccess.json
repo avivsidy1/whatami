@@ -1,0 +1,43 @@
+{
+  "access_levels": [
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AmazonMachineLearningRealTimePredictionOnlyAccess",
+  "createdate": "2015-04-09T17:44:06+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "machinelearning:Predict"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Write",
+      "action": "machinelearning:Predict",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "machinelearning:Predict",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AmazonMachineLearningRealTimePredictionOnlyAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2015-04-09T17:44:06+00:00",
+  "version": "v1"
+}

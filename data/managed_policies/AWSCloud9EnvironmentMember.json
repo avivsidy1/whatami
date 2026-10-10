@@ -1,0 +1,207 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AWSCloud9EnvironmentMember",
+  "createdate": "2026-02-12T17:59:00+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "cloud9:GetUserSettings",
+          "cloud9:UpdateUserSettings",
+          "cloud9:GetMigrationExperiences",
+          "iam:GetUser",
+          "iam:ListUsers"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      },
+      {
+        "Action": [
+          "cloud9:DescribeEnvironmentMemberships"
+        ],
+        "Condition": {
+          "Null": {
+            "cloud9:EnvironmentId": "true",
+            "cloud9:UserArn": "true"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Action": [
+          "ssm:StartSession",
+          "ssm:GetConnectionStatus"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:CalledViaFirst": "cloud9.amazonaws.com"
+          },
+          "StringLike": {
+            "ssm:resourceTag/aws:cloud9:environment": "*"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*:*:instance/*"
+      },
+      {
+        "Action": [
+          "ssm:StartSession"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ssm:*:*:document/*"
+        ]
+      },
+      {
+        "Action": [
+          "ssmmessages:OpenDataChannel"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ssm:*:*:session/*"
+        ]
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Read",
+      "action": "cloud9:GetUserSettings",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloud9:GetUserSettings",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "cloud9:UpdateUserSettings",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloud9:UpdateUserSettings",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "cloud9:GetMigrationExperiences",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloud9:GetMigrationExperiences",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "iam:GetUser",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:GetUser",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "iam:ListUsers",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:ListUsers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "cloud9:DescribeEnvironmentMemberships",
+      "condition": {
+        "Null": {
+          "cloud9:EnvironmentId": "true",
+          "cloud9:UserArn": "true"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloud9:DescribeEnvironmentMemberships",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ssm:StartSession",
+      "condition": {
+        "StringEquals": {
+          "aws:CalledViaFirst": "cloud9.amazonaws.com"
+        },
+        "StringLike": {
+          "ssm:resourceTag/aws:cloud9:environment": "*"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:StartSession",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "ssm:GetConnectionStatus",
+      "condition": {
+        "StringEquals": {
+          "aws:CalledViaFirst": "cloud9.amazonaws.com"
+        },
+        "StringLike": {
+          "ssm:resourceTag/aws:cloud9:environment": "*"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:GetConnectionStatus",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ssm:StartSession",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:StartSession",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ssmmessages:OpenDataChannel",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssmmessages:OpenDataChannel",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSCloud9EnvironmentMember",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-12T17:59:00+00:00",
+  "version": "v9"
+}

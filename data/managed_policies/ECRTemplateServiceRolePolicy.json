@@ -1,0 +1,44 @@
+{
+  "access_levels": [
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/aws-service-role/ECRTemplateServiceRolePolicy",
+  "createdate": "2024-06-19T23:11:37+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "ecr:CreateRepository"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "CreateRepositoryWithTemplate"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Write",
+      "action": "ecr:CreateRepository",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ecr:CreateRepository",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "ECRTemplateServiceRolePolicy",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2024-06-19T23:11:37+00:00",
+  "version": "v1"
+}

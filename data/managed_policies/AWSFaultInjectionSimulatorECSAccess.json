@@ -1,0 +1,250 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/service-role/AWSFaultInjectionSimulatorECSAccess",
+  "createdate": "2026-02-12T18:02:55+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "ecs:DescribeClusters",
+          "ecs:ListContainerInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ecs:*:*:cluster/*"
+        ],
+        "Sid": "Clusters"
+      },
+      {
+        "Action": [
+          "ecs:DescribeTasks",
+          "ecs:StopTask"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ecs:*:*:task/*/*"
+        ],
+        "Sid": "Tasks"
+      },
+      {
+        "Action": [
+          "ecs:UpdateContainerInstancesState"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ecs:*:*:container-instance/*/*"
+        ],
+        "Sid": "ContainerInstances"
+      },
+      {
+        "Action": [
+          "ecs:ListTasks"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "ListTasks"
+      },
+      {
+        "Action": [
+          "ssm:SendCommand"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ssm:*:*:managed-instance/*",
+          "arn:aws:ssm:*:*:document/*"
+        ],
+        "Sid": "SSMSend"
+      },
+      {
+        "Action": [
+          "ssm:ListCommands",
+          "ssm:CancelCommand"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "SSMList"
+      },
+      {
+        "Action": [
+          "tag:GetResources"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "TargetResolutionByTags"
+      },
+      {
+        "Action": [
+          "ecs:DescribeContainerInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:ecs:*:*:container-instance/*/*",
+        "Sid": "DescribeContainerInstances"
+      },
+      {
+        "Action": [
+          "ec2:DescribeInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "DescribeInstances"
+      },
+      {
+        "Action": [
+          "ec2:DescribeSubnets"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "DescribeSubnets"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Read",
+      "action": "ecs:DescribeClusters",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ecs:DescribeClusters",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ecs:ListContainerInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ecs:ListContainerInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "ecs:DescribeTasks",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ecs:DescribeTasks",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ecs:StopTask",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ecs:StopTask",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ecs:UpdateContainerInstancesState",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ecs:UpdateContainerInstancesState",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ecs:ListTasks",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ecs:ListTasks",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ssm:SendCommand",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:SendCommand",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ssm:ListCommands",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:ListCommands",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ssm:CancelCommand",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:CancelCommand",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "tag:GetResources",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "tag:GetResources",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "ecs:DescribeContainerInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ecs:DescribeContainerInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeSubnets",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeSubnets",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSFaultInjectionSimulatorECSAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-12T18:02:55+00:00",
+  "version": "v9"
+}

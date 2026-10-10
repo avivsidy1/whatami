@@ -1,0 +1,65 @@
+{
+  "access_levels": [],
+  "arn": "arn:aws:iam::aws:policy/service-role/RDSCloudHsmAuthorizationRole",
+  "createdate": "2019-09-26T22:14:29+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "cloudhsm:CreateLunaClient",
+          "cloudhsm:DeleteLunaClient",
+          "cloudhsm:DescribeHapg",
+          "cloudhsm:DescribeLunaClient",
+          "cloudhsm:GetConfig",
+          "cloudhsm:ModifyHapg",
+          "cloudhsm:ModifyLunaClient"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [],
+  "grantless": false,
+  "malformed": false,
+  "name": "RDSCloudHsmAuthorizationRole",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [
+    {
+      "action": "cloudhsm:CreateLunaClient",
+      "condition": null
+    },
+    {
+      "action": "cloudhsm:DeleteLunaClient",
+      "condition": null
+    },
+    {
+      "action": "cloudhsm:DescribeHapg",
+      "condition": null
+    },
+    {
+      "action": "cloudhsm:DescribeLunaClient",
+      "condition": null
+    },
+    {
+      "action": "cloudhsm:GetConfig",
+      "condition": null
+    },
+    {
+      "action": "cloudhsm:ModifyHapg",
+      "condition": null
+    },
+    {
+      "action": "cloudhsm:ModifyLunaClient",
+      "condition": null
+    }
+  ],
+  "updatedate": "2019-09-26T22:14:29+00:00",
+  "version": "v2"
+}

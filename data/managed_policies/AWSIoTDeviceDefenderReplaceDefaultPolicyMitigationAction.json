@@ -1,0 +1,45 @@
+{
+  "access_levels": [
+    "Permissions management"
+  ],
+  "arn": "arn:aws:iam::aws:policy/service-role/AWSIoTDeviceDefenderReplaceDefaultPolicyMitigationAction",
+  "createdate": "2019-08-07T17:04:57+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "iot:CreatePolicyVersion"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ]
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Permissions management",
+      "action": "iot:CreatePolicyVersion",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iot:CreatePolicyVersion",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSIoTDeviceDefenderReplaceDefaultPolicyMitigationAction",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2019-08-07T17:04:57+00:00",
+  "version": "v1"
+}

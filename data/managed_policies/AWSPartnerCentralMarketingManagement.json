@@ -1,0 +1,358 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AWSPartnerCentralMarketingManagement",
+  "createdate": "2026-02-14T00:57:08+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "partnercentral-account-management:AccessMarketingCentral"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "PartnerCentralMarketingAccess"
+      },
+      {
+        "Action": [
+          "partnercentral-account-management:AccessLegacyPartnerCentral"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "partnercentral-account-management:LegacyPartnerCentralRole": "MarketingStaff"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "LegacyPartnerCentralAccess"
+      },
+      {
+        "Action": [
+          "partnercentral:SearchPartnerProfiles",
+          "partnercentral:GetPartnerProfile"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "PartnerDiscoveryAccess"
+      },
+      {
+        "Action": [
+          "partnercentral:StartProfileUpdateTask",
+          "partnercentral:GetProfileUpdateTask",
+          "partnercentral:CancelProfileUpdateTask",
+          "partnercentral:PutProfileVisibility",
+          "partnercentral:GetProfileVisibility"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "partnercentral:Catalog": [
+              "AWS",
+              "Sandbox"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:partnercentral:*:*:catalog/*/partner/*",
+        "Sid": "PartnerProfileAccess"
+      },
+      {
+        "Action": [
+          "partnercentral:ListPartners",
+          "partnercentral:GetPartner"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "partnercentral:Catalog": [
+              "AWS",
+              "Sandbox"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "PartnerResourceAccess"
+      },
+      {
+        "Action": [
+          "s3:PutObject"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:s3:::aws-partner-central-marketplace-ephemeral-writeonly-files/${aws:PrincipalAccount}/*",
+        "Sid": "PartnerCentralEphemeralWriteS3Access"
+      },
+      {
+        "Action": [
+          "partnercentral:GetPartnerDashboard"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:partnercentral::*:catalog/AWS/ReportingData/MarketingCampaign_V1/Dashboard/*"
+        ],
+        "Sid": "PartnerDashboardAccess"
+      },
+      {
+        "Action": [
+          "q:StartConversation",
+          "q:SendMessage",
+          "q:GetConversation",
+          "q:ListConversations",
+          "q:PassRequest"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "AmazonQPartnerAssistantAccess"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Write",
+      "action": "partnercentral-account-management:AccessMarketingCentral",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral-account-management:AccessMarketingCentral",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral-account-management:AccessLegacyPartnerCentral",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "partnercentral-account-management:LegacyPartnerCentralRole": "MarketingStaff"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral-account-management:AccessLegacyPartnerCentral",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "partnercentral:SearchPartnerProfiles",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:SearchPartnerProfiles",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetPartnerProfile",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetPartnerProfile",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:StartProfileUpdateTask",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:StartProfileUpdateTask",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetProfileUpdateTask",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetProfileUpdateTask",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:CancelProfileUpdateTask",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:CancelProfileUpdateTask",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:PutProfileVisibility",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:PutProfileVisibility",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetProfileVisibility",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetProfileVisibility",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "partnercentral:ListPartners",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:ListPartners",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetPartner",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetPartner",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "s3:PutObject",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "s3:PutObject",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetPartnerDashboard",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetPartnerDashboard",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:StartConversation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:StartConversation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:SendMessage",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:SendMessage",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "q:GetConversation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:GetConversation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "q:ListConversations",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:ListConversations",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:PassRequest",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:PassRequest",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSPartnerCentralMarketingManagement",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-14T00:57:08+00:00",
+  "version": "v4"
+}

@@ -1,0 +1,273 @@
+{
+  "access_levels": [
+    "List",
+    "Tagging",
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/aws-service-role/AWSServiceRolePolicyForWorkspacesInstances",
+  "createdate": "2026-06-29T23:42:20+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "ec2:DescribeCapacityReservations",
+          "ec2:DescribeInstances",
+          "ec2:DescribeInstanceStatus",
+          "ec2:DescribeTags",
+          "ec2:DescribeVolumes"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "DescribeResources"
+      },
+      {
+        "Action": [
+          "ec2:CreateCapacityReservation"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:RequestTag/ManagedBy": "workspaces-instances"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "CreateCapacityReservation"
+      },
+      {
+        "Action": [
+          "ec2:ModifyCapacityReservation",
+          "ec2:CancelCapacityReservation"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:ResourceTag/ManagedBy": "workspaces-instances"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "ManageTaggedCapacityReservations"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:RequestTag/ManagedBy": "workspaces-instances"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*:*:capacity-reservation/*",
+        "Sid": "TagRemediation"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags",
+          "ec2:TerminateInstances",
+          "ec2:DeleteVolume",
+          "ec2:StopInstances",
+          "ec2:StartInstances"
+        ],
+        "Condition": {
+          "StringLike": {
+            "ec2:ManagedResourceOperator": "workspaces-instances.amazonaws.com"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "ManagedInstanceOperations"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeCapacityReservations",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeCapacityReservations",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstanceStatus",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstanceStatus",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeTags",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeVolumes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeVolumes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:CreateCapacityReservation",
+      "condition": {
+        "StringEquals": {
+          "aws:RequestTag/ManagedBy": "workspaces-instances"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateCapacityReservation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:ModifyCapacityReservation",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/ManagedBy": "workspaces-instances"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:ModifyCapacityReservation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:CancelCapacityReservation",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/ManagedBy": "workspaces-instances"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CancelCapacityReservation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "StringEquals": {
+          "aws:RequestTag/ManagedBy": "workspaces-instances"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "StringLike": {
+          "ec2:ManagedResourceOperator": "workspaces-instances.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:TerminateInstances",
+      "condition": {
+        "StringLike": {
+          "ec2:ManagedResourceOperator": "workspaces-instances.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:TerminateInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:DeleteVolume",
+      "condition": {
+        "StringLike": {
+          "ec2:ManagedResourceOperator": "workspaces-instances.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DeleteVolume",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:StopInstances",
+      "condition": {
+        "StringLike": {
+          "ec2:ManagedResourceOperator": "workspaces-instances.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:StopInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:StartInstances",
+      "condition": {
+        "StringLike": {
+          "ec2:ManagedResourceOperator": "workspaces-instances.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:StartInstances",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSServiceRolePolicyForWorkspacesInstances",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-06-29T23:42:20+00:00",
+  "version": "v3"
+}

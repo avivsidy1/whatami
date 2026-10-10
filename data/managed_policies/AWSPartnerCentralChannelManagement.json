@@ -1,0 +1,567 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Tagging",
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AWSPartnerCentralChannelManagement",
+  "createdate": "2026-02-14T00:57:09+00:00",
+  "credentials_exposure": true,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "partnercentral:CreateProgramManagementAccount",
+          "partnercentral:UpdateProgramManagementAccount",
+          "partnercentral:DeleteProgramManagementAccount",
+          "partnercentral:ListProgramManagementAccounts",
+          "partnercentral:GetProgramManagementAccount",
+          "partnercentral:CreateRelationship",
+          "partnercentral:UpdateRelationship",
+          "partnercentral:DeleteRelationship",
+          "partnercentral:GetRelationship",
+          "partnercentral:ListRelationships",
+          "partnercentral:CreateChannelHandshake",
+          "partnercentral:AcceptChannelHandshake",
+          "partnercentral:RejectChannelHandshake",
+          "partnercentral:CancelChannelHandshake",
+          "partnercentral:ListChannelHandshakes"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "partnercentral:Catalog": [
+              "AWS",
+              "Sandbox"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "ChannelManagement"
+      },
+      {
+        "Action": [
+          "sts:AssumeRole"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:iam::*:role/PartnerCentralChannelBillingTransferManagement",
+          "arn:aws:iam::*:role/PartnerCentralChannelBillingTransferReadOnly"
+        ],
+        "Sid": "ChannelBillingTransferRoleAccess"
+      },
+      {
+        "Action": [
+          "partnercentral:TagResource",
+          "partnercentral:UntagResource",
+          "partnercentral:ListTagsForResource"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "partnercentral:Catalog": [
+              "AWS",
+              "Sandbox"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:partnercentral:*:*:catalog/*/program-management-account/*",
+          "arn:aws:partnercentral:*:*:catalog/*/channel-handshake/*"
+        ],
+        "Sid": "TaggingAccess"
+      },
+      {
+        "Action": [
+          "partnercentral-account-management:AccessLegacyPartnerCentral"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "partnercentral-account-management:LegacyPartnerCentralRole": "ChannelUser"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "LegacyPartnerCentralAccess"
+      },
+      {
+        "Action": [
+          "partnercentral:GetPartnerDashboard"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:partnercentral::*:catalog/AWS/ReportingData/Resell_V1/Dashboard/*"
+        ],
+        "Sid": "PartnerDashboardAccess"
+      },
+      {
+        "Action": [
+          "partnercentral:ListPartners",
+          "partnercentral:GetPartner"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "partnercentral:Catalog": [
+              "AWS",
+              "Sandbox"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "PartnerResourceAccess"
+      },
+      {
+        "Action": [
+          "q:StartConversation",
+          "q:SendMessage",
+          "q:GetConversation",
+          "q:ListConversations",
+          "q:PassRequest"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "AmazonQPartnerAssistantAccess"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Write",
+      "action": "partnercentral:CreateProgramManagementAccount",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:CreateProgramManagementAccount",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:UpdateProgramManagementAccount",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:UpdateProgramManagementAccount",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:DeleteProgramManagementAccount",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:DeleteProgramManagementAccount",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "partnercentral:ListProgramManagementAccounts",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:ListProgramManagementAccounts",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetProgramManagementAccount",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetProgramManagementAccount",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:CreateRelationship",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:CreateRelationship",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:UpdateRelationship",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:UpdateRelationship",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:DeleteRelationship",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:DeleteRelationship",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetRelationship",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetRelationship",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "partnercentral:ListRelationships",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:ListRelationships",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:CreateChannelHandshake",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:CreateChannelHandshake",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:AcceptChannelHandshake",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:AcceptChannelHandshake",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:RejectChannelHandshake",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:RejectChannelHandshake",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral:CancelChannelHandshake",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:CancelChannelHandshake",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "partnercentral:ListChannelHandshakes",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:ListChannelHandshakes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "sts:AssumeRole",
+      "condition": null,
+      "credentials_exposure": true,
+      "data_access": false,
+      "effective_action": "sts:AssumeRole",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "partnercentral:TagResource",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "partnercentral:UntagResource",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:UntagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:ListTagsForResource",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral-account-management:AccessLegacyPartnerCentral",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "partnercentral-account-management:LegacyPartnerCentralRole": "ChannelUser"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral-account-management:AccessLegacyPartnerCentral",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetPartnerDashboard",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetPartnerDashboard",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "partnercentral:ListPartners",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:ListPartners",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "partnercentral:GetPartner",
+      "condition": {
+        "StringEquals": {
+          "partnercentral:Catalog": [
+            "AWS",
+            "Sandbox"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral:GetPartner",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:StartConversation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:StartConversation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:SendMessage",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:SendMessage",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "q:GetConversation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:GetConversation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "q:ListConversations",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:ListConversations",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:PassRequest",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:PassRequest",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSPartnerCentralChannelManagement",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-14T00:57:09+00:00",
+  "version": "v7"
+}

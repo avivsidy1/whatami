@@ -1,0 +1,497 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Tagging",
+    "Write",
+    "Permissions management"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AWSMarketplaceSellerProductsFullAccess",
+  "createdate": "2026-02-19T19:12:10+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "aws-marketplace:ListChangeSets",
+          "aws-marketplace:ListEntities",
+          "aws-marketplace:ListAssessments"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "MarketplaceListAccess"
+      },
+      {
+        "Action": [
+          "aws-marketplace:DescribeChangeSet",
+          "aws-marketplace:StartChangeSet",
+          "aws-marketplace:CancelChangeSet",
+          "aws-marketplace:DescribeEntity"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace*/*",
+        "Sid": "MarketplaceResourceAccess"
+      },
+      {
+        "Action": [
+          "aws-marketplace:DescribeAssessment"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "MarketplaceAssessmentAccess"
+      },
+      {
+        "Action": [
+          "ec2:DescribeImages",
+          "ec2:DescribeSnapshots",
+          "ec2:ModifyImageAttribute",
+          "ec2:ModifySnapshotAttribute"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "EC2ResourceAccess"
+      },
+      {
+        "Action": [
+          "iam:GetRole"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:iam::*:role/*",
+        "Sid": "GetIAMRoleAccess"
+      },
+      {
+        "Action": [
+          "iam:PassRole"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "iam:PassedToService": "assets.marketplace.amazonaws.com"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:iam::*:role/*",
+        "Sid": "IAMPassRoleAccess"
+      },
+      {
+        "Action": [
+          "vendor-insights:GetDataSource",
+          "vendor-insights:ListDataSources",
+          "vendor-insights:ListSecurityProfiles",
+          "vendor-insights:GetSecurityProfile",
+          "vendor-insights:GetSecurityProfileSnapshot",
+          "vendor-insights:ListSecurityProfileSnapshots"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "VendorInsightsAccess"
+      },
+      {
+        "Action": [
+          "aws-marketplace:TagResource",
+          "aws-marketplace:UntagResource",
+          "aws-marketplace:ListTagsForResource"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace*/*",
+        "Sid": "TagAccess"
+      },
+      {
+        "Action": [
+          "aws-marketplace:GetResourcePolicy",
+          "aws-marketplace:PutResourcePolicy",
+          "aws-marketplace:DeleteResourcePolicy"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:aws-marketplace:*:*:AWSMarketplace*/*",
+        "Sid": "ResourceSharingAccess"
+      },
+      {
+        "Action": [
+          "s3:PutObject"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:s3:::aws-partner-central-marketplace-ephemeral-writeonly-files/${aws:PrincipalAccount}/*"
+        ],
+        "Sid": "MarketplaceEphemeralWriteS3Access"
+      },
+      {
+        "Action": [
+          "partnercentral-account-management:AccessLegacyPartnerCentral"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "partnercentral-account-management:LegacyPartnerCentralRole": "TechnicalStaff"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "LegacyPartnerCentralAccess"
+      },
+      {
+        "Action": [
+          "q:StartConversation",
+          "q:SendMessage",
+          "q:GetConversation",
+          "q:ListConversations",
+          "q:PassRequest"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "AmazonQPartnerAssistantAccess"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "List",
+      "action": "aws-marketplace:ListChangeSets",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:ListChangeSets",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "aws-marketplace:ListEntities",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:ListEntities",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "aws-marketplace:ListAssessments",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:ListAssessments",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "aws-marketplace:DescribeChangeSet",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:DescribeChangeSet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "aws-marketplace:StartChangeSet",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:StartChangeSet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "aws-marketplace:CancelChangeSet",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:CancelChangeSet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "aws-marketplace:DescribeEntity",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:DescribeEntity",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "aws-marketplace:DescribeAssessment",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:DescribeAssessment",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeImages",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeImages",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeSnapshots",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeSnapshots",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:ModifyImageAttribute",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:ModifyImageAttribute",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "ec2:ModifySnapshotAttribute",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:ModifySnapshotAttribute",
+      "privesc": false,
+      "resource_exposure": true
+    },
+    {
+      "access_level": "Read",
+      "action": "iam:GetRole",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:GetRole",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "iam:PassRole",
+      "condition": {
+        "StringEquals": {
+          "iam:PassedToService": "assets.marketplace.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:PassRole",
+      "privesc": true,
+      "resource_exposure": true
+    },
+    {
+      "access_level": "Read",
+      "action": "vendor-insights:GetDataSource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "vendor-insights:GetDataSource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "vendor-insights:ListDataSources",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "vendor-insights:ListDataSources",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "vendor-insights:ListSecurityProfiles",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "vendor-insights:ListSecurityProfiles",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "vendor-insights:GetSecurityProfile",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "vendor-insights:GetSecurityProfile",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "vendor-insights:GetSecurityProfileSnapshot",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "vendor-insights:GetSecurityProfileSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "vendor-insights:ListSecurityProfileSnapshots",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "vendor-insights:ListSecurityProfileSnapshots",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "aws-marketplace:TagResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "aws-marketplace:UntagResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:UntagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "aws-marketplace:ListTagsForResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "aws-marketplace:GetResourcePolicy",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:GetResourcePolicy",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "aws-marketplace:PutResourcePolicy",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:PutResourcePolicy",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "aws-marketplace:DeleteResourcePolicy",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "aws-marketplace:DeleteResourcePolicy",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "s3:PutObject",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "s3:PutObject",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "partnercentral-account-management:AccessLegacyPartnerCentral",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "partnercentral-account-management:LegacyPartnerCentralRole": "TechnicalStaff"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "partnercentral-account-management:AccessLegacyPartnerCentral",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:StartConversation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:StartConversation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:SendMessage",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:SendMessage",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "q:GetConversation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:GetConversation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "q:ListConversations",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:ListConversations",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "q:PassRequest",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "q:PassRequest",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSMarketplaceSellerProductsFullAccess",
+  "privesc": true,
+  "resource_exposure": true,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-19T19:12:10+00:00",
+  "version": "v15"
+}

@@ -1,0 +1,2256 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Tagging",
+    "Write",
+    "Permissions management"
+  ],
+  "arn": "arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForRestores",
+  "createdate": "2026-02-12T17:57:30+00:00",
+  "credentials_exposure": false,
+  "data_access": true,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:PutItem",
+          "dynamodb:GetItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:DescribeTable"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:dynamodb:*:*:table/*",
+        "Sid": "DynamoDBPermissions"
+      },
+      {
+        "Action": [
+          "dynamodb:RestoreTableFromBackup"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:dynamodb:*:*:table/*/backup/*",
+        "Sid": "DynamoDBBackupResourcePermissions"
+      },
+      {
+        "Action": [
+          "ec2:CreateVolume",
+          "ec2:DeleteVolume"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ec2:*::snapshot/*",
+          "arn:aws:ec2:*:*:volume/*"
+        ],
+        "Sid": "EBSPermissions"
+      },
+      {
+        "Action": [
+          "ec2:DescribeImages",
+          "ec2:DescribeInstances",
+          "ec2:DescribeSnapshots",
+          "ec2:DescribeVolumes",
+          "ec2:DescribeAccountAttributes",
+          "ec2:DescribeAddresses",
+          "ec2:DescribeAvailabilityZones",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeInternetGateways",
+          "ec2:DescribeSnapshotTierStatus",
+          "ec2:DescribeRouteTables"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "EC2DescribePermissions"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:ResourceTag/AmazonFSx": "ManagedByAmazonFSx"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*:*:route-table/*",
+        "Sid": "CreateTagsPermissions"
+      },
+      {
+        "Action": [
+          "storagegateway:DeleteVolume",
+          "storagegateway:DescribeCachediSCSIVolumes",
+          "storagegateway:DescribeStorediSCSIVolumes",
+          "storagegateway:AddTagsToResource"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:storagegateway:*:*:gateway/*/volume/*",
+        "Sid": "StorageGatewayVolumePermissions"
+      },
+      {
+        "Action": [
+          "storagegateway:DescribeGatewayInformation",
+          "storagegateway:CreateStorediSCSIVolume",
+          "storagegateway:CreateCachediSCSIVolume"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:storagegateway:*:*:gateway/*",
+        "Sid": "StorageGatewayGatewayPermissions"
+      },
+      {
+        "Action": [
+          "storagegateway:ListVolumes"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:storagegateway:*:*:*",
+        "Sid": "StorageGatewayListPermissions"
+      },
+      {
+        "Action": [
+          "rds:DescribeDBInstances",
+          "rds:DescribeDBSnapshots",
+          "rds:ListTagsForResource",
+          "rds:RestoreDBInstanceFromDBSnapshot",
+          "rds:DeleteDBInstance",
+          "rds:AddTagsToResource",
+          "rds:DescribeDBClusters",
+          "rds:RestoreDBClusterFromSnapshot",
+          "rds:DeleteDBCluster",
+          "rds:RestoreDBInstanceToPointInTime",
+          "rds:DescribeDBClusterSnapshots",
+          "rds:RestoreDBClusterToPointInTime",
+          "rds:CreateTenantDatabase",
+          "rds:DeleteTenantDatabase"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "RDSPermissions"
+      },
+      {
+        "Action": [
+          "elasticfilesystem:Restore",
+          "elasticfilesystem:CreateFilesystem",
+          "elasticfilesystem:DescribeFilesystems",
+          "elasticfilesystem:DeleteFilesystem",
+          "elasticfilesystem:TagResource"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:elasticfilesystem:*:*:file-system/*",
+        "Sid": "EFSPermissions"
+      },
+      {
+        "Action": [
+          "kms:DescribeKey"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "KMSDescribePermissions"
+      },
+      {
+        "Action": [
+          "dsql:StartRestoreJob",
+          "dsql:GetRestoreJob",
+          "dsql:StopRestoreJob",
+          "dsql:TagResource",
+          "dsql:CreateCluster",
+          "dsql:PutMultiRegionProperties",
+          "dsql:PutWitnessRegion",
+          "dsql:UpdateCluster",
+          "dsql:AddPeerCluster",
+          "dsql:RemovePeerCluster",
+          "dsql:GetCluster"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "DSQLResourcePermissionsForRestore"
+      },
+      {
+        "Action": [
+          "kms:Decrypt",
+          "kms:Encrypt",
+          "kms:GenerateDataKey",
+          "kms:ReEncryptTo",
+          "kms:ReEncryptFrom",
+          "kms:GenerateDataKeyWithoutPlaintext",
+          "kms:DescribeKey"
+        ],
+        "Condition": {
+          "StringLike": {
+            "kms:ViaService": [
+              "dynamodb.*.amazonaws.com",
+              "ec2.*.amazonaws.com",
+              "elasticfilesystem.*.amazonaws.com",
+              "rds.*.amazonaws.com",
+              "redshift.*.amazonaws.com",
+              "dsql.*.amazonaws.com",
+              "redshift-serverless.*.amazonaws.com"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "KMSPermissions"
+      },
+      {
+        "Action": [
+          "kms:CreateGrant"
+        ],
+        "Condition": {
+          "Bool": {
+            "kms:GrantIsForAWSResource": "true"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "KMSCreateGrantPermissions"
+      },
+      {
+        "Action": [
+          "ebs:CompleteSnapshot",
+          "ebs:StartSnapshot",
+          "ebs:PutSnapshotBlock"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*::snapshot/*",
+        "Sid": "EBSSnapshotBlockPermissions"
+      },
+      {
+        "Action": [
+          "rds:CreateDBInstance"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:rds:*:*:db:*",
+        "Sid": "RDSResourcePermissions"
+      },
+      {
+        "Action": [
+          "ec2:DeleteSnapshot",
+          "ec2:DeleteTags",
+          "ec2:RestoreSnapshotTier"
+        ],
+        "Condition": {
+          "Null": {
+            "aws:ResourceTag/aws:backup:source-resource": "false"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*::snapshot/*",
+        "Sid": "EC2DeleteAndRestorePermissions"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags"
+        ],
+        "Condition": {
+          "ForAllValues:StringEquals": {
+            "aws:TagKeys": [
+              "aws:backup:source-resource"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ec2:*::snapshot/*",
+          "arn:aws:ec2:*:*:instance/*"
+        ],
+        "Sid": "EC2CreateTagsScopedPermissions"
+      },
+      {
+        "Action": [
+          "ec2:RunInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "EC2RunInstancesPermissions"
+      },
+      {
+        "Action": [
+          "ec2:TerminateInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*:*:instance/*",
+        "Sid": "EC2TerminateInstancesPermissions"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags"
+        ],
+        "Condition": {
+          "StringLike": {
+            "ec2:CreateAction": [
+              "RunInstances",
+              "CreateVolume"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ec2:*:*:instance/*",
+          "arn:aws:ec2:*:*:volume/*"
+        ],
+        "Sid": "EC2CreateTagsPermissions"
+      },
+      {
+        "Action": [
+          "fsx:CreateFileSystemFromBackup"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:fsx:*:*:file-system/*",
+          "arn:aws:fsx:*:*:backup/*"
+        ],
+        "Sid": "FsxPermissions"
+      },
+      {
+        "Action": [
+          "fsx:DescribeFileSystems",
+          "fsx:TagResource"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:fsx:*:*:file-system/*",
+        "Sid": "FsxTagPermissions"
+      },
+      {
+        "Action": [
+          "fsx:DescribeBackups"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:fsx:*:*:backup/*",
+        "Sid": "FsxBackupPermissions"
+      },
+      {
+        "Action": [
+          "fsx:DeleteFileSystem",
+          "fsx:UntagResource"
+        ],
+        "Condition": {
+          "Null": {
+            "aws:ResourceTag/aws:backup:source-resource": "false"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:fsx:*:*:file-system/*",
+        "Sid": "FsxDeletePermissions"
+      },
+      {
+        "Action": [
+          "fsx:DescribeVolumes"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:fsx:*:*:volume/*",
+        "Sid": "FsxDescribePermissions"
+      },
+      {
+        "Action": [
+          "fsx:CreateVolumeFromBackup",
+          "fsx:TagResource"
+        ],
+        "Condition": {
+          "ForAllValues:StringEquals": {
+            "aws:TagKeys": [
+              "aws:backup:source-resource"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:fsx:*:*:volume/*"
+        ],
+        "Sid": "FsxVolumeTagPermissions"
+      },
+      {
+        "Action": [
+          "fsx:CreateVolumeFromBackup",
+          "fsx:TagResource"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:fsx:*:*:storage-virtual-machine/*",
+          "arn:aws:fsx:*:*:backup/*",
+          "arn:aws:fsx:*:*:volume/*"
+        ],
+        "Sid": "FsxBackupTagPermissions"
+      },
+      {
+        "Action": [
+          "fsx:DeleteVolume",
+          "fsx:UntagResource"
+        ],
+        "Condition": {
+          "Null": {
+            "aws:ResourceTag/aws:backup:source-resource": "false"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:fsx:*:*:volume/*",
+        "Sid": "FsxVolumePermissions"
+      },
+      {
+        "Action": [
+          "ds:DescribeDirectories"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "DSPermissions"
+      },
+      {
+        "Action": [
+          "dynamodb:RestoreTableFromAwsBackup"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:dynamodb:*:*:table/*",
+        "Sid": "DynamoDBRestorePermissions"
+      },
+      {
+        "Action": [
+          "backup-gateway:Restore"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:backup-gateway:*:*:hypervisor/*",
+        "Sid": "GatewayRestorePermissions"
+      },
+      {
+        "Action": [
+          "cloudformation:CreateChangeSet",
+          "cloudformation:DescribeChangeSet",
+          "cloudformation:TagResource"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:cloudformation:*:*:*/*/*",
+        "Sid": "CloudformationChangeSetPermissions"
+      },
+      {
+        "Action": [
+          "redshift:RestoreFromClusterSnapshot",
+          "redshift:RestoreTableFromClusterSnapshot"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:redshift:*:*:snapshot:*/*",
+          "arn:aws:redshift:*:*:cluster:*",
+          "arn:aws:redshift-serverless:*:*:snapshot/*"
+        ],
+        "Sid": "RedshiftClusterSnapshotPermissions"
+      },
+      {
+        "Action": [
+          "redshift:DescribeClusters"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:redshift:*:*:cluster:*"
+        ],
+        "Sid": "RedshiftClusterPermissions"
+      },
+      {
+        "Action": [
+          "redshift:DescribeTableRestoreStatus"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "RedshiftTablePermissions"
+      },
+      {
+        "Action": [
+          "redshift-serverless:RestoreTableFromSnapshot"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:redshift-serverless:*:*:namespace/*",
+          "arn:aws:redshift-serverless:*:*:workgroup/*",
+          "arn:aws:redshift-serverless:*:*:snapshot/*"
+        ],
+        "Sid": "RedshiftServerlessSnapshotPermissions"
+      },
+      {
+        "Action": [
+          "redshift-serverless:GetNamespace"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:redshift-serverless:*:*:namespace/*"
+        ],
+        "Sid": "RedshiftServerlessNamespacePermissions"
+      },
+      {
+        "Action": [
+          "redshift-serverless:GetTableRestoreStatus"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "RedshiftServerlessTablePermissions"
+      },
+      {
+        "Action": [
+          "timestream:StartAwsRestoreJob",
+          "timestream:GetAwsRestoreStatus",
+          "timestream:ListTables",
+          "timestream:ListTagsForResource",
+          "timestream:ListDatabases",
+          "timestream:DescribeTable",
+          "timestream:DescribeDatabase"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:timestream:*:*:database/*"
+        ],
+        "Sid": "TimestreamResourcePermissions"
+      },
+      {
+        "Action": [
+          "timestream:DescribeEndpoints"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "TimestreamEndpointPermissions"
+      },
+      {
+        "Action": [
+          "eks:CreateCluster",
+          "eks:DescribeCluster",
+          "eks:CreateAccessEntry",
+          "eks:DescribeAccessEntry",
+          "eks:AssociateAccessPolicy",
+          "eks:ListAssociatedAccessPolicies",
+          "eks:CreateAddon",
+          "eks:DescribeAddon",
+          "eks:CreateNodegroup",
+          "eks:DescribeNodegroup",
+          "eks:CreateFargateProfile",
+          "eks:DescribeFargateProfile",
+          "eks:CreatePodIdentityAssociation",
+          "eks:DescribePodIdentityAssociation",
+          "eks:TagResource"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:eks:*:*:access-entry/*",
+          "arn:aws:eks:*:*:addon/*",
+          "arn:aws:eks:*:*:cluster/*",
+          "arn:aws:eks:*:*:fargateprofile/*",
+          "arn:aws:eks:*:*:nodegroup/*",
+          "arn:aws:eks:*:*:podidentityassociation/*"
+        ],
+        "Sid": "EKSClusterRestore"
+      },
+      {
+        "Action": [
+          "eks:AssociateAccessPolicy",
+          "eks:DisassociateAccessPolicy"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "eks:accessScope": "cluster",
+            "eks:policyArn": "arn:aws:eks::aws:cluster-access-policy/AWSBackupFullAccessPolicyForRestore"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:eks:*:*:access-entry/*",
+        "Sid": "AssociateRestoreAccessPolicy"
+      },
+      {
+        "Action": [
+          "iam:PassRole"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "iam:PassedToService": [
+              "eks.amazonaws.com",
+              "ec2.amazonaws.com",
+              "pods.eks.amazonaws.com",
+              "backup.amazonaws.com"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:iam::*:role/*",
+        "Sid": "CreateClusterIAMPerms"
+      },
+      {
+        "Action": [
+          "ec2:DescribeLaunchTemplateVersions",
+          "ec2:DescribeSubnets",
+          "ec2:RunInstances",
+          "iam:GetRole",
+          "iam:ListAttachedRolePolicies"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "CreateEKSNodeGroupPermissions"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "ec2:CreateAction": [
+              "RunInstances"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:ec2:*:*:instance/*",
+          "arn:aws:ec2:*:*:volume/*",
+          "arn:aws:ec2:*:*:network-interface/*"
+        ],
+        "Sid": "EKSNodeGroupTagOnCreate"
+      },
+      {
+        "Action": [
+          "backup:StartRestoreJob",
+          "backup:ListRestoreJobs",
+          "backup:ListRecoveryPointsByBackupVault",
+          "backup:DescribeRestoreJob"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "BackupRestoreJobManagementPermissions"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Read",
+      "action": "dynamodb:Scan",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": true,
+      "effective_action": "dynamodb:Scan",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dynamodb:Query",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": true,
+      "effective_action": "dynamodb:Query",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dynamodb:UpdateItem",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dynamodb:UpdateItem",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dynamodb:PutItem",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dynamodb:PutItem",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dynamodb:GetItem",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": true,
+      "effective_action": "dynamodb:GetItem",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dynamodb:DeleteItem",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dynamodb:DeleteItem",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dynamodb:BatchWriteItem",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dynamodb:BatchWriteItem",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dynamodb:DescribeTable",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dynamodb:DescribeTable",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dynamodb:RestoreTableFromBackup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dynamodb:RestoreTableFromBackup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:CreateVolume",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateVolume",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:DeleteVolume",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DeleteVolume",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeImages",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeImages",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeSnapshots",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeSnapshots",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeVolumes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeVolumes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeAccountAttributes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeAccountAttributes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeAddresses",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeAddresses",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeAvailabilityZones",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeAvailabilityZones",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeSecurityGroups",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeSecurityGroups",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeSubnets",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeSubnets",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeVpcs",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeVpcs",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInternetGateways",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInternetGateways",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeSnapshotTierStatus",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeSnapshotTierStatus",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeRouteTables",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeRouteTables",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/AmazonFSx": "ManagedByAmazonFSx"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "storagegateway:DeleteVolume",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "storagegateway:DeleteVolume",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "storagegateway:DescribeCachediSCSIVolumes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "storagegateway:DescribeCachediSCSIVolumes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "storagegateway:DescribeStorediSCSIVolumes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "storagegateway:DescribeStorediSCSIVolumes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "storagegateway:AddTagsToResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "storagegateway:AddTagsToResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "storagegateway:DescribeGatewayInformation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "storagegateway:DescribeGatewayInformation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "storagegateway:CreateStorediSCSIVolume",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "storagegateway:CreateStorediSCSIVolume",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "storagegateway:CreateCachediSCSIVolume",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "storagegateway:CreateCachediSCSIVolume",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "storagegateway:ListVolumes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "storagegateway:ListVolumes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "rds:DescribeDBInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DescribeDBInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "rds:DescribeDBSnapshots",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DescribeDBSnapshots",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "rds:ListTagsForResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:RestoreDBInstanceFromDBSnapshot",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:RestoreDBInstanceFromDBSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:DeleteDBInstance",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DeleteDBInstance",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "rds:AddTagsToResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:AddTagsToResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "rds:DescribeDBClusters",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DescribeDBClusters",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:RestoreDBClusterFromSnapshot",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:RestoreDBClusterFromSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:DeleteDBCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DeleteDBCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:RestoreDBInstanceToPointInTime",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:RestoreDBInstanceToPointInTime",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "rds:DescribeDBClusterSnapshots",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DescribeDBClusterSnapshots",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:RestoreDBClusterToPointInTime",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:RestoreDBClusterToPointInTime",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:CreateTenantDatabase",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:CreateTenantDatabase",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:DeleteTenantDatabase",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DeleteTenantDatabase",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "elasticfilesystem:Restore",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "elasticfilesystem:Restore",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "elasticfilesystem:CreateFilesystem",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "elasticfilesystem:CreateFileSystem",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "elasticfilesystem:DescribeFilesystems",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "elasticfilesystem:DescribeFileSystems",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "elasticfilesystem:DeleteFilesystem",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "elasticfilesystem:DeleteFileSystem",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "elasticfilesystem:TagResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "elasticfilesystem:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "kms:DescribeKey",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:DescribeKey",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dsql:StartRestoreJob",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:StartRestoreJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dsql:GetRestoreJob",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:GetRestoreJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dsql:StopRestoreJob",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:StopRestoreJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "dsql:TagResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dsql:CreateCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:CreateCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dsql:PutMultiRegionProperties",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:PutMultiRegionProperties",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dsql:PutWitnessRegion",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:PutWitnessRegion",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dsql:UpdateCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:UpdateCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dsql:AddPeerCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:AddPeerCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dsql:RemovePeerCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:RemovePeerCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "dsql:GetCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dsql:GetCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "kms:Decrypt",
+      "condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "dynamodb.*.amazonaws.com",
+            "ec2.*.amazonaws.com",
+            "elasticfilesystem.*.amazonaws.com",
+            "rds.*.amazonaws.com",
+            "redshift.*.amazonaws.com",
+            "dsql.*.amazonaws.com",
+            "redshift-serverless.*.amazonaws.com"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:Decrypt",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "kms:Encrypt",
+      "condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "dynamodb.*.amazonaws.com",
+            "ec2.*.amazonaws.com",
+            "elasticfilesystem.*.amazonaws.com",
+            "rds.*.amazonaws.com",
+            "redshift.*.amazonaws.com",
+            "dsql.*.amazonaws.com",
+            "redshift-serverless.*.amazonaws.com"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:Encrypt",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "kms:GenerateDataKey",
+      "condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "dynamodb.*.amazonaws.com",
+            "ec2.*.amazonaws.com",
+            "elasticfilesystem.*.amazonaws.com",
+            "rds.*.amazonaws.com",
+            "redshift.*.amazonaws.com",
+            "dsql.*.amazonaws.com",
+            "redshift-serverless.*.amazonaws.com"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:GenerateDataKey",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "kms:ReEncryptTo",
+      "condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "dynamodb.*.amazonaws.com",
+            "ec2.*.amazonaws.com",
+            "elasticfilesystem.*.amazonaws.com",
+            "rds.*.amazonaws.com",
+            "redshift.*.amazonaws.com",
+            "dsql.*.amazonaws.com",
+            "redshift-serverless.*.amazonaws.com"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:ReEncryptTo",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "kms:ReEncryptFrom",
+      "condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "dynamodb.*.amazonaws.com",
+            "ec2.*.amazonaws.com",
+            "elasticfilesystem.*.amazonaws.com",
+            "rds.*.amazonaws.com",
+            "redshift.*.amazonaws.com",
+            "dsql.*.amazonaws.com",
+            "redshift-serverless.*.amazonaws.com"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:ReEncryptFrom",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "kms:GenerateDataKeyWithoutPlaintext",
+      "condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "dynamodb.*.amazonaws.com",
+            "ec2.*.amazonaws.com",
+            "elasticfilesystem.*.amazonaws.com",
+            "rds.*.amazonaws.com",
+            "redshift.*.amazonaws.com",
+            "dsql.*.amazonaws.com",
+            "redshift-serverless.*.amazonaws.com"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:GenerateDataKeyWithoutPlaintext",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "kms:DescribeKey",
+      "condition": {
+        "StringLike": {
+          "kms:ViaService": [
+            "dynamodb.*.amazonaws.com",
+            "ec2.*.amazonaws.com",
+            "elasticfilesystem.*.amazonaws.com",
+            "rds.*.amazonaws.com",
+            "redshift.*.amazonaws.com",
+            "dsql.*.amazonaws.com",
+            "redshift-serverless.*.amazonaws.com"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:DescribeKey",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "kms:CreateGrant",
+      "condition": {
+        "Bool": {
+          "kms:GrantIsForAWSResource": "true"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": true,
+      "effective_action": "kms:CreateGrant",
+      "privesc": true,
+      "resource_exposure": true
+    },
+    {
+      "access_level": "Write",
+      "action": "ebs:CompleteSnapshot",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ebs:CompleteSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ebs:StartSnapshot",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ebs:StartSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ebs:PutSnapshotBlock",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ebs:PutSnapshotBlock",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "rds:CreateDBInstance",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:CreateDBInstance",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:DeleteSnapshot",
+      "condition": {
+        "Null": {
+          "aws:ResourceTag/aws:backup:source-resource": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DeleteSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:DeleteTags",
+      "condition": {
+        "Null": {
+          "aws:ResourceTag/aws:backup:source-resource": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DeleteTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:RestoreSnapshotTier",
+      "condition": {
+        "Null": {
+          "aws:ResourceTag/aws:backup:source-resource": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:RestoreSnapshotTier",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "aws:backup:source-resource"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:RunInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:RunInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:TerminateInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:TerminateInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "StringLike": {
+          "ec2:CreateAction": [
+            "RunInstances",
+            "CreateVolume"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "fsx:CreateFileSystemFromBackup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:CreateFileSystemFromBackup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "fsx:DescribeFileSystems",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:DescribeFileSystems",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "fsx:TagResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "fsx:DescribeBackups",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:DescribeBackups",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "fsx:DeleteFileSystem",
+      "condition": {
+        "Null": {
+          "aws:ResourceTag/aws:backup:source-resource": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:DeleteFileSystem",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "fsx:UntagResource",
+      "condition": {
+        "Null": {
+          "aws:ResourceTag/aws:backup:source-resource": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:UntagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "fsx:DescribeVolumes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:DescribeVolumes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "fsx:CreateVolumeFromBackup",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "aws:backup:source-resource"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:CreateVolumeFromBackup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "fsx:TagResource",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "aws:backup:source-resource"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "fsx:CreateVolumeFromBackup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:CreateVolumeFromBackup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "fsx:TagResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "fsx:DeleteVolume",
+      "condition": {
+        "Null": {
+          "aws:ResourceTag/aws:backup:source-resource": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:DeleteVolume",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "fsx:UntagResource",
+      "condition": {
+        "Null": {
+          "aws:ResourceTag/aws:backup:source-resource": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "fsx:UntagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ds:DescribeDirectories",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ds:DescribeDirectories",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "dynamodb:RestoreTableFromAwsBackup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "dynamodb:RestoreTableFromAwsBackup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "backup-gateway:Restore",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "backup-gateway:Restore",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "cloudformation:CreateChangeSet",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloudformation:CreateChangeSet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "cloudformation:DescribeChangeSet",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloudformation:DescribeChangeSet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "cloudformation:TagResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloudformation:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "redshift:RestoreFromClusterSnapshot",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "redshift:RestoreFromClusterSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "redshift:RestoreTableFromClusterSnapshot",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "redshift:RestoreTableFromClusterSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "redshift:DescribeClusters",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "redshift:DescribeClusters",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "redshift:DescribeTableRestoreStatus",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "redshift:DescribeTableRestoreStatus",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "redshift-serverless:RestoreTableFromSnapshot",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "redshift-serverless:RestoreTableFromSnapshot",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "redshift-serverless:GetNamespace",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "redshift-serverless:GetNamespace",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "redshift-serverless:GetTableRestoreStatus",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "redshift-serverless:GetTableRestoreStatus",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "timestream:StartAwsRestoreJob",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "timestream:StartAwsRestoreJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "timestream:GetAwsRestoreStatus",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "timestream:GetAwsRestoreStatus",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "timestream:ListTables",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "timestream:ListTables",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "timestream:ListTagsForResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "timestream:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "timestream:ListDatabases",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "timestream:ListDatabases",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "timestream:DescribeTable",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "timestream:DescribeTable",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "timestream:DescribeDatabase",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "timestream:DescribeDatabase",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "timestream:DescribeEndpoints",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "timestream:DescribeEndpoints",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:CreateCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:CreateCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "eks:DescribeCluster",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:DescribeCluster",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:CreateAccessEntry",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:CreateAccessEntry",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "eks:DescribeAccessEntry",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:DescribeAccessEntry",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:AssociateAccessPolicy",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:AssociateAccessPolicy",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "eks:ListAssociatedAccessPolicies",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:ListAssociatedAccessPolicies",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:CreateAddon",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:CreateAddon",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "eks:DescribeAddon",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:DescribeAddon",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:CreateNodegroup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:CreateNodegroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "eks:DescribeNodegroup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:DescribeNodegroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:CreateFargateProfile",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:CreateFargateProfile",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "eks:DescribeFargateProfile",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:DescribeFargateProfile",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:CreatePodIdentityAssociation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:CreatePodIdentityAssociation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "eks:DescribePodIdentityAssociation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:DescribePodIdentityAssociation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "eks:TagResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:AssociateAccessPolicy",
+      "condition": {
+        "StringEquals": {
+          "eks:accessScope": "cluster",
+          "eks:policyArn": "arn:aws:eks::aws:cluster-access-policy/AWSBackupFullAccessPolicyForRestore"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:AssociateAccessPolicy",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "eks:DisassociateAccessPolicy",
+      "condition": {
+        "StringEquals": {
+          "eks:accessScope": "cluster",
+          "eks:policyArn": "arn:aws:eks::aws:cluster-access-policy/AWSBackupFullAccessPolicyForRestore"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "eks:DisassociateAccessPolicy",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "iam:PassRole",
+      "condition": {
+        "StringEquals": {
+          "iam:PassedToService": [
+            "eks.amazonaws.com",
+            "ec2.amazonaws.com",
+            "pods.eks.amazonaws.com",
+            "backup.amazonaws.com"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:PassRole",
+      "privesc": true,
+      "resource_exposure": true
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeLaunchTemplateVersions",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeLaunchTemplateVersions",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeSubnets",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeSubnets",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:RunInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:RunInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "iam:GetRole",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:GetRole",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "iam:ListAttachedRolePolicies",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:ListAttachedRolePolicies",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "StringEquals": {
+          "ec2:CreateAction": [
+            "RunInstances"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "backup:StartRestoreJob",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "backup:StartRestoreJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "backup:ListRestoreJobs",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "backup:ListRestoreJobs",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "backup:ListRecoveryPointsByBackupVault",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "backup:ListRecoveryPointsByBackupVault",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "backup:DescribeRestoreJob",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "backup:DescribeRestoreJob",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSBackupServiceRolePolicyForRestores",
+  "privesc": true,
+  "resource_exposure": true,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-12T17:57:30+00:00",
+  "version": "v35"
+}

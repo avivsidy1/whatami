@@ -1,0 +1,1739 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Write",
+    "Permissions management"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AWSDeadlineCloud-UserAccessFarms",
+  "createdate": "2026-05-29T20:27:22+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "identitystore:DescribeGroup",
+          "identitystore:DescribeUser",
+          "identitystore:ListGroupMembershipsForMember",
+          "deadline:GetApplicationVersion",
+          "deadline:GetMonitorSettings",
+          "ec2:DescribeInstanceTypes",
+          "identitystore:ListUsers"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "AdditionalPermissions"
+      },
+      {
+        "Action": [
+          "deadline:AssociateMemberToFarm",
+          "deadline:AssociateMemberToFleet",
+          "deadline:AssociateMemberToJob",
+          "deadline:AssociateMemberToQueue",
+          "deadline:CreateBudget",
+          "deadline:DeleteBudget",
+          "deadline:DisassociateMemberFromFarm",
+          "deadline:DisassociateMemberFromFleet",
+          "deadline:DisassociateMemberFromJob",
+          "deadline:DisassociateMemberFromQueue",
+          "deadline:GetBudget",
+          "deadline:GetSessionsStatisticsAggregation",
+          "deadline:ListBudgets",
+          "deadline:StartSessionsStatisticsAggregation",
+          "deadline:UpdateBudget"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "deadline:FarmMembershipLevels": [
+              "OWNER"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "OwnerLevelPermissions"
+      },
+      {
+        "Action": [
+          "deadline:AssociateMemberToFarm",
+          "deadline:AssociateMemberToFleet",
+          "deadline:AssociateMemberToJob",
+          "deadline:AssociateMemberToQueue"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "deadline:FarmMembershipLevels": [
+              "MANAGER"
+            ]
+          },
+          "StringEquals": {
+            "deadline:AssociatedMembershipLevel": [
+              "MANAGER",
+              "CONTRIBUTOR",
+              "VIEWER",
+              ""
+            ],
+            "deadline:MembershipLevel": [
+              "MANAGER",
+              "CONTRIBUTOR",
+              "VIEWER"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "ManagerLevelMemberAssociation"
+      },
+      {
+        "Action": [
+          "deadline:DisassociateMemberFromFarm",
+          "deadline:DisassociateMemberFromFleet",
+          "deadline:DisassociateMemberFromJob",
+          "deadline:DisassociateMemberFromQueue"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "deadline:FarmMembershipLevels": [
+              "MANAGER"
+            ]
+          },
+          "StringEquals": {
+            "deadline:AssociatedMembershipLevel": [
+              "MANAGER",
+              "CONTRIBUTOR",
+              "VIEWER",
+              ""
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "ManagerLevelMemberDisassociation"
+      },
+      {
+        "Action": [
+          "deadline:ListFarmMembers",
+          "deadline:ListFleetMembers",
+          "deadline:ListJobMembers",
+          "deadline:ListQueueMembers",
+          "deadline:UpdateJob",
+          "deadline:UpdateSession",
+          "deadline:UpdateStep",
+          "deadline:UpdateTask"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "deadline:FarmMembershipLevels": [
+              "OWNER",
+              "MANAGER"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "OwnerManagerPermissions"
+      },
+      {
+        "Action": [
+          "deadline:AssumeQueueRoleForUser",
+          "deadline:CreateJob"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "deadline:FarmMembershipLevels": [
+              "OWNER",
+              "MANAGER",
+              "CONTRIBUTOR"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "OwnerManagerContributorPermissions"
+      },
+      {
+        "Action": [
+          "deadline:AssumeFleetRoleForRead",
+          "deadline:AssumeQueueRoleForRead",
+          "deadline:GetFarm",
+          "deadline:GetFleet",
+          "deadline:GetJob",
+          "deadline:GetJobTemplate",
+          "deadline:GetQueue",
+          "deadline:GetQueueEnvironment",
+          "deadline:GetQueueFleetAssociation",
+          "deadline:GetSession",
+          "deadline:GetSessionAction",
+          "deadline:GetStep",
+          "deadline:GetStorageProfile",
+          "deadline:GetStorageProfileForQueue",
+          "deadline:GetTask",
+          "deadline:GetVolume",
+          "deadline:GetWorker",
+          "deadline:ListJobParameterDefinitions",
+          "deadline:ListQueueEnvironments",
+          "deadline:ListQueueFleetAssociations",
+          "deadline:ListSessionActions",
+          "deadline:ListSessions",
+          "deadline:ListSessionsForWorker",
+          "deadline:ListStepConsumers",
+          "deadline:ListStepDependencies",
+          "deadline:ListSteps",
+          "deadline:ListStorageProfiles",
+          "deadline:ListStorageProfilesForQueue",
+          "deadline:ListTasks",
+          "deadline:ListVolumes",
+          "deadline:ListWorkers",
+          "deadline:SearchJobs",
+          "deadline:SearchSteps",
+          "deadline:SearchTasks",
+          "deadline:SearchWorkers"
+        ],
+        "Condition": {
+          "ForAnyValue:StringEquals": {
+            "deadline:FarmMembershipLevels": [
+              "OWNER",
+              "MANAGER",
+              "CONTRIBUTOR",
+              "VIEWER"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "AllLevelsPermissions"
+      },
+      {
+        "Action": [
+          "deadline:ListFarms",
+          "deadline:ListFleets",
+          "deadline:ListJobs",
+          "deadline:ListQueues"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "deadline:RequesterPrincipalId": "${deadline:PrincipalId}"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "ListBasedOnMembership"
+      },
+      {
+        "Action": [
+          "kms:Decrypt"
+        ],
+        "Condition": {
+          "ArnLike": {
+            "kms:EncryptionContext:aws:sso:instance-arn": "arn:*:sso:::instance/*"
+          },
+          "StringLike": {
+            "kms:ViaService": "sso.*.amazonaws.com"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "AllowKmsAccessViaIdentityCenter"
+      },
+      {
+        "Action": [
+          "kms:Decrypt"
+        ],
+        "Condition": {
+          "ArnLike": {
+            "kms:EncryptionContext:aws:identitystore:identitystore-arn": "arn:*:identitystore::*:identitystore/*"
+          },
+          "StringLike": {
+            "kms:ViaService": "identitystore.*.amazonaws.com"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "AllowKmsAccessViaIdentityStore"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Read",
+      "action": "identitystore:DescribeGroup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "identitystore:DescribeGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "identitystore:DescribeUser",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "identitystore:DescribeUser",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "identitystore:ListGroupMembershipsForMember",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "identitystore:ListGroupMembershipsForMember",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetApplicationVersion",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetApplicationVersion",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetMonitorSettings",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetMonitorSettings",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstanceTypes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstanceTypes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "identitystore:ListUsers",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "identitystore:ListUsers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:AssociateMemberToFarm",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssociateMemberToFarm",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:AssociateMemberToFleet",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssociateMemberToFleet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:AssociateMemberToJob",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssociateMemberToJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:AssociateMemberToQueue",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssociateMemberToQueue",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:CreateBudget",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:CreateBudget",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:DeleteBudget",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DeleteBudget",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:DisassociateMemberFromFarm",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DisassociateMemberFromFarm",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:DisassociateMemberFromFleet",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DisassociateMemberFromFleet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:DisassociateMemberFromJob",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DisassociateMemberFromJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:DisassociateMemberFromQueue",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DisassociateMemberFromQueue",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetBudget",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetBudget",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetSessionsStatisticsAggregation",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetSessionsStatisticsAggregation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListBudgets",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListBudgets",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:StartSessionsStatisticsAggregation",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:StartSessionsStatisticsAggregation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:UpdateBudget",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:UpdateBudget",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:AssociateMemberToFarm",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "MANAGER"
+          ]
+        },
+        "StringEquals": {
+          "deadline:AssociatedMembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER",
+            ""
+          ],
+          "deadline:MembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssociateMemberToFarm",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:AssociateMemberToFleet",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "MANAGER"
+          ]
+        },
+        "StringEquals": {
+          "deadline:AssociatedMembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER",
+            ""
+          ],
+          "deadline:MembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssociateMemberToFleet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:AssociateMemberToJob",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "MANAGER"
+          ]
+        },
+        "StringEquals": {
+          "deadline:AssociatedMembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER",
+            ""
+          ],
+          "deadline:MembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssociateMemberToJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:AssociateMemberToQueue",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "MANAGER"
+          ]
+        },
+        "StringEquals": {
+          "deadline:AssociatedMembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER",
+            ""
+          ],
+          "deadline:MembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssociateMemberToQueue",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:DisassociateMemberFromFarm",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "MANAGER"
+          ]
+        },
+        "StringEquals": {
+          "deadline:AssociatedMembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER",
+            ""
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DisassociateMemberFromFarm",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:DisassociateMemberFromFleet",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "MANAGER"
+          ]
+        },
+        "StringEquals": {
+          "deadline:AssociatedMembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER",
+            ""
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DisassociateMemberFromFleet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:DisassociateMemberFromJob",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "MANAGER"
+          ]
+        },
+        "StringEquals": {
+          "deadline:AssociatedMembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER",
+            ""
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DisassociateMemberFromJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "deadline:DisassociateMemberFromQueue",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "MANAGER"
+          ]
+        },
+        "StringEquals": {
+          "deadline:AssociatedMembershipLevel": [
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER",
+            ""
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:DisassociateMemberFromQueue",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListFarmMembers",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListFarmMembers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListFleetMembers",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListFleetMembers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListJobMembers",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListJobMembers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListQueueMembers",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListQueueMembers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:UpdateJob",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:UpdateJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:UpdateSession",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:UpdateSession",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:UpdateStep",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:UpdateStep",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:UpdateTask",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:UpdateTask",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:AssumeQueueRoleForUser",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssumeQueueRoleForUser",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:CreateJob",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:CreateJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:AssumeFleetRoleForRead",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssumeFleetRoleForRead",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:AssumeQueueRoleForRead",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssumeQueueRoleForRead",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetFarm",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetFarm",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetFleet",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetFleet",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetJob",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetJob",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetJobTemplate",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetJobTemplate",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetQueue",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetQueue",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetQueueEnvironment",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetQueueEnvironment",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetQueueFleetAssociation",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetQueueFleetAssociation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetSession",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetSession",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetSessionAction",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetSessionAction",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetStep",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetStep",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetStorageProfile",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetStorageProfile",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetStorageProfileForQueue",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetStorageProfileForQueue",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetTask",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetTask",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetVolume",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetVolume",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:GetWorker",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:GetWorker",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListJobParameterDefinitions",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListJobParameterDefinitions",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListQueueEnvironments",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListQueueEnvironments",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListQueueFleetAssociations",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListQueueFleetAssociations",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListSessionActions",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListSessionActions",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListSessions",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListSessions",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListSessionsForWorker",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListSessionsForWorker",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListStepConsumers",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListStepConsumers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListStepDependencies",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListStepDependencies",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListSteps",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListSteps",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListStorageProfiles",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListStorageProfiles",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListStorageProfilesForQueue",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListStorageProfilesForQueue",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListTasks",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListTasks",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListVolumes",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListVolumes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListWorkers",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListWorkers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:SearchJobs",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:SearchJobs",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:SearchSteps",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:SearchSteps",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:SearchTasks",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:SearchTasks",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:SearchWorkers",
+      "condition": {
+        "ForAnyValue:StringEquals": {
+          "deadline:FarmMembershipLevels": [
+            "OWNER",
+            "MANAGER",
+            "CONTRIBUTOR",
+            "VIEWER"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:SearchWorkers",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListFarms",
+      "condition": {
+        "StringEquals": {
+          "deadline:RequesterPrincipalId": "${deadline:PrincipalId}"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListFarms",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListFleets",
+      "condition": {
+        "StringEquals": {
+          "deadline:RequesterPrincipalId": "${deadline:PrincipalId}"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListFleets",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListJobs",
+      "condition": {
+        "StringEquals": {
+          "deadline:RequesterPrincipalId": "${deadline:PrincipalId}"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListJobs",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "deadline:ListQueues",
+      "condition": {
+        "StringEquals": {
+          "deadline:RequesterPrincipalId": "${deadline:PrincipalId}"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListQueues",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "kms:Decrypt",
+      "condition": {
+        "ArnLike": {
+          "kms:EncryptionContext:aws:sso:instance-arn": "arn:*:sso:::instance/*"
+        },
+        "StringLike": {
+          "kms:ViaService": "sso.*.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:Decrypt",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "kms:Decrypt",
+      "condition": {
+        "ArnLike": {
+          "kms:EncryptionContext:aws:identitystore:identitystore-arn": "arn:*:identitystore::*:identitystore/*"
+        },
+        "StringLike": {
+          "kms:ViaService": "identitystore.*.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "kms:Decrypt",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSDeadlineCloud-UserAccessFarms",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-05-29T20:27:22+00:00",
+  "version": "v7"
+}

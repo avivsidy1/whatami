@@ -1,0 +1,64 @@
+{
+  "access_levels": [
+    "Permissions management"
+  ],
+  "arn": null,
+  "createdate": "2023-02-23T18:34:44Z",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": true,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "iotroborunner:*"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      },
+      {
+        "Action": [
+          "iam:CreateServiceLinkedRole"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "iam:AWSServiceName": "iotroborunner.amazonaws.com"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:iam::*:role/aws-service-role/iotroborunner.amazonaws.com/AWSServiceRoleForIoTRoboRunner"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Permissions management",
+      "action": "iam:CreateServiceLinkedRole",
+      "condition": {
+        "StringEquals": {
+          "iam:AWSServiceName": "iotroborunner.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:CreateServiceLinkedRole",
+      "privesc": true,
+      "resource_exposure": true
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSIotRoboRunnerFullAccess",
+  "privesc": true,
+  "resource_exposure": true,
+  "undocumented_actions": false,
+  "unknown_actions": [
+    {
+      "action": "iotroborunner:*",
+      "condition": null
+    }
+  ],
+  "updatedate": null,
+  "version": "v2"
+}

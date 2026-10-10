@@ -1,0 +1,206 @@
+{
+  "access_levels": [
+    "List",
+    "Read"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AmazonCloudWatchRUMReadOnlyAccess",
+  "createdate": "2026-02-12T18:02:30+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "rum:GetAppMonitor",
+          "rum:GetAppMonitorData",
+          "rum:ListAppMonitors",
+          "rum:ListRumMetricsDestinations",
+          "rum:BatchGetRumMetricDefinitions",
+          "rum:GetResourcePolicy",
+          "rum:ListTagsForResource"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      },
+      {
+        "Action": [
+          "synthetics:describeCanariesLastRun",
+          "synthetics:describeCanaries"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:synthetics:*:*:canary:*"
+      },
+      {
+        "Action": [
+          "cloudwatch:GetMetricData"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      },
+      {
+        "Action": [
+          "cloudwatch:DescribeAlarms"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:cloudwatch:*:*:alarm:*"
+      },
+      {
+        "Action": [
+          "logs:DescribeLogGroups"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:logs:*:*:log-group::log-stream:*"
+      },
+      {
+        "Action": [
+          "xray:GetTraceSummaries"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Read",
+      "action": "rum:GetAppMonitor",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rum:GetAppMonitor",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "rum:GetAppMonitorData",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rum:GetAppMonitorData",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "rum:ListAppMonitors",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rum:ListAppMonitors",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "rum:ListRumMetricsDestinations",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rum:ListRumMetricsDestinations",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "rum:BatchGetRumMetricDefinitions",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rum:BatchGetRumMetricDefinitions",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "rum:GetResourcePolicy",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rum:GetResourcePolicy",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "rum:ListTagsForResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rum:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "synthetics:describeCanariesLastRun",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "synthetics:DescribeCanariesLastRun",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "synthetics:describeCanaries",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "synthetics:DescribeCanaries",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "cloudwatch:GetMetricData",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloudwatch:GetMetricData",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "cloudwatch:DescribeAlarms",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloudwatch:DescribeAlarms",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "logs:DescribeLogGroups",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "logs:DescribeLogGroups",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "xray:GetTraceSummaries",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "xray:GetTraceSummaries",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AmazonCloudWatchRUMReadOnlyAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-12T18:02:30+00:00",
+  "version": "v8"
+}

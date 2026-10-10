@@ -1,0 +1,128 @@
+{
+  "access_levels": [
+    "Read",
+    "Tagging",
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AWSDeadlineCloud-WorkerHost",
+  "createdate": "2026-02-12T17:58:06+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "deadline:CreateWorker",
+          "deadline:AssumeFleetRoleForWorker"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:PrincipalAccount": "${aws:ResourceAccount}"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "JoinFleetPermissions"
+      },
+      {
+        "Action": [
+          "deadline:TagResource"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:PrincipalAccount": "${aws:ResourceAccount}",
+            "deadline:CalledAction": "CreateWorker"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:deadline:*:*:farm/*/fleet/*/worker/*",
+        "Sid": "TagWorkerPermission"
+      },
+      {
+        "Action": [
+          "deadline:ListTagsForResource"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:PrincipalAccount": "${aws:ResourceAccount}",
+            "deadline:CalledAction": "CreateWorker"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:deadline:*:*:farm/*/fleet/*",
+        "Sid": "ListFleetTagsPermission"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Write",
+      "action": "deadline:CreateWorker",
+      "condition": {
+        "StringEquals": {
+          "aws:PrincipalAccount": "${aws:ResourceAccount}"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:CreateWorker",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "deadline:AssumeFleetRoleForWorker",
+      "condition": {
+        "StringEquals": {
+          "aws:PrincipalAccount": "${aws:ResourceAccount}"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:AssumeFleetRoleForWorker",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "deadline:TagResource",
+      "condition": {
+        "StringEquals": {
+          "aws:PrincipalAccount": "${aws:ResourceAccount}",
+          "deadline:CalledAction": "CreateWorker"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "deadline:ListTagsForResource",
+      "condition": {
+        "StringEquals": {
+          "aws:PrincipalAccount": "${aws:ResourceAccount}",
+          "deadline:CalledAction": "CreateWorker"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "deadline:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSDeadlineCloud-WorkerHost",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-12T17:58:06+00:00",
+  "version": "v4"
+}

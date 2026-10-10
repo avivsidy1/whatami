@@ -1,0 +1,54 @@
+{
+  "access_levels": [
+    "List"
+  ],
+  "arn": null,
+  "createdate": "2022-08-25T15:58:49Z",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": true,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "sagemaker-groundtruth-synthetic:List*",
+          "sagemaker-groundtruth-synthetic:Get*",
+          "s3:ListBucket"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "List",
+      "action": "s3:ListBucket",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "s3:ListBucket",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "GroundTruthSyntheticConsoleReadOnlyAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [
+    {
+      "action": "sagemaker-groundtruth-synthetic:List*",
+      "condition": null
+    },
+    {
+      "action": "sagemaker-groundtruth-synthetic:Get*",
+      "condition": null
+    }
+  ],
+  "updatedate": null,
+  "version": "v1"
+}

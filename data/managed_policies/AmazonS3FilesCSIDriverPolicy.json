@@ -1,0 +1,156 @@
+{
+  "access_levels": [
+    "List",
+    "Tagging",
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/service-role/AmazonS3FilesCSIDriverPolicy",
+  "createdate": "2026-04-07T13:12:12+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "s3files:ListAccessPoints",
+          "s3files:ListFileSystems"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "AllowList"
+      },
+      {
+        "Action": [
+          "s3files:CreateAccessPoint"
+        ],
+        "Condition": {
+          "ForAllValues:StringEquals": {
+            "aws:TagKeys": "efs.csi.aws.com/cluster"
+          },
+          "Null": {
+            "aws:RequestTag/efs.csi.aws.com/cluster": "false"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "AllowCreateAccessPoint"
+      },
+      {
+        "Action": [
+          "s3files:TagResource"
+        ],
+        "Condition": {
+          "ForAllValues:StringEquals": {
+            "aws:TagKeys": "efs.csi.aws.com/cluster"
+          },
+          "Null": {
+            "aws:RequestTag/efs.csi.aws.com/cluster": "false"
+          },
+          "StringEquals": {
+            "s3files:CreateAction": "CreateAccessPoint"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "AllowTagNewAccessPoints"
+      },
+      {
+        "Action": [
+          "s3files:DeleteAccessPoint"
+        ],
+        "Condition": {
+          "Null": {
+            "aws:ResourceTag/efs.csi.aws.com/cluster": "false"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "AllowDeleteAccessPoint"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "List",
+      "action": "s3files:ListAccessPoints",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "s3files:ListAccessPoints",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "s3files:ListFileSystems",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "s3files:ListFileSystems",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "s3files:CreateAccessPoint",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": "efs.csi.aws.com/cluster"
+        },
+        "Null": {
+          "aws:RequestTag/efs.csi.aws.com/cluster": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "s3files:CreateAccessPoint",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "s3files:TagResource",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": "efs.csi.aws.com/cluster"
+        },
+        "Null": {
+          "aws:RequestTag/efs.csi.aws.com/cluster": "false"
+        },
+        "StringEquals": {
+          "s3files:CreateAction": "CreateAccessPoint"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "s3files:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "s3files:DeleteAccessPoint",
+      "condition": {
+        "Null": {
+          "aws:ResourceTag/efs.csi.aws.com/cluster": "false"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "s3files:DeleteAccessPoint",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AmazonS3FilesCSIDriverPolicy",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-04-07T13:12:12+00:00",
+  "version": "v1"
+}

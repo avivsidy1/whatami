@@ -1,0 +1,68 @@
+{
+  "access_levels": [
+    "List",
+    "Write"
+  ],
+  "arn": null,
+  "createdate": "2016-06-03T14:23:15Z",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": true,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "opsworks:DescribeStackProvisioningParameters",
+          "opsworks:DescribeStacks",
+          "opsworks:RegisterInstance"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ]
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "List",
+      "action": "opsworks:DescribeStackProvisioningParameters",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "opsworks:DescribeStackProvisioningParameters",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "opsworks:DescribeStacks",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "opsworks:DescribeStacks",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "opsworks:RegisterInstance",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "opsworks:RegisterInstance",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSOpsWorksInstanceRegistration",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": null,
+  "version": "v1"
+}

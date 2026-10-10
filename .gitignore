@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Runtime output (enumeration log) -- regenerated on each run.
+outputs/*.log

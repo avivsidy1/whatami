@@ -1,0 +1,265 @@
+{
+  "access_levels": [
+    "List",
+    "Read"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AmazonRDSPerformanceInsightsReadOnly",
+  "createdate": "2026-02-12T18:02:56+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "rds:DescribeDBInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:rds:*:*:db:*",
+        "Sid": "AmazonRDSDescribeDBInstances"
+      },
+      {
+        "Action": [
+          "rds:DescribeDBClusters"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:rds:*:*:cluster:*",
+        "Sid": "AmazonRDSDescribeDBClusters"
+      },
+      {
+        "Action": [
+          "rds:DescribeDBShardGroups"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:rds:*:*:shard-group:*",
+        "Sid": "AmazonRDSDescribeDBShardGroups"
+      },
+      {
+        "Action": [
+          "rds:ListTagsForResource"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:rds:*:*:db:*",
+          "arn:aws:rds:*:*:shard-group:*",
+          "arn:aws:rds:*:*:cluster:*"
+        ],
+        "Sid": "AmazonRDSListTagsForResource"
+      },
+      {
+        "Action": [
+          "pi:DescribeDimensionKeys"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:metrics/rds/*",
+        "Sid": "AmazonRDSPerformanceInsightsDescribeDimensionKeys"
+      },
+      {
+        "Action": [
+          "pi:GetDimensionKeyDetails"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:metrics/rds/*",
+        "Sid": "AmazonRDSPerformanceInsightsGetDimensionKeyDetails"
+      },
+      {
+        "Action": [
+          "pi:GetResourceMetadata"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:metrics/rds/*",
+        "Sid": "AmazonRDSPerformanceInsightsGetResourceMetadata"
+      },
+      {
+        "Action": [
+          "pi:GetResourceMetrics"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:metrics/rds/*",
+        "Sid": "AmazonRDSPerformanceInsightsGetResourceMetrics"
+      },
+      {
+        "Action": [
+          "pi:ListAvailableResourceDimensions"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:metrics/rds/*",
+        "Sid": "AmazonRDSPerformanceInsightsListAvailableResourceDimensions"
+      },
+      {
+        "Action": [
+          "pi:ListAvailableResourceMetrics"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:metrics/rds/*",
+        "Sid": "AmazonRDSPerformanceInsightsListAvailableResourceMetrics"
+      },
+      {
+        "Action": [
+          "pi:GetPerformanceAnalysisReport"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*",
+        "Sid": "AmazonRDSPerformanceInsightsGetPerformanceAnalysisReport"
+      },
+      {
+        "Action": [
+          "pi:ListPerformanceAnalysisReports"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:perf-reports/rds/*/*",
+        "Sid": "AmazonRDSPerformanceInsightsListPerformanceAnalysisReports"
+      },
+      {
+        "Action": [
+          "pi:ListTagsForResource"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:pi:*:*:*/rds/*",
+        "Sid": "AmazonRDSPerformanceInsightsListTagsForResource"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "List",
+      "action": "rds:DescribeDBInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DescribeDBInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "rds:DescribeDBClusters",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DescribeDBClusters",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "rds:DescribeDBShardGroups",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:DescribeDBShardGroups",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "rds:ListTagsForResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "rds:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "pi:DescribeDimensionKeys",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:DescribeDimensionKeys",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "pi:GetDimensionKeyDetails",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:GetDimensionKeyDetails",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "pi:GetResourceMetadata",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:GetResourceMetadata",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "pi:GetResourceMetrics",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:GetResourceMetrics",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "pi:ListAvailableResourceDimensions",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:ListAvailableResourceDimensions",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "pi:ListAvailableResourceMetrics",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:ListAvailableResourceMetrics",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "pi:GetPerformanceAnalysisReport",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:GetPerformanceAnalysisReport",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "pi:ListPerformanceAnalysisReports",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:ListPerformanceAnalysisReports",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "pi:ListTagsForResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "pi:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AmazonRDSPerformanceInsightsReadOnly",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-12T18:02:56+00:00",
+  "version": "v6"
+}

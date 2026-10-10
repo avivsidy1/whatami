@@ -1,0 +1,177 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Tagging",
+    "Write"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AmazonSageMakerTrainingPlanCreateAccess",
+  "createdate": "2026-02-12T18:03:21+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "sagemaker:CreateTrainingPlan",
+          "sagemaker:CreateReservedCapacity",
+          "sagemaker:DescribeReservedCapacity"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:sagemaker:*:*:training-plan/*",
+          "arn:aws:sagemaker:*:*:reserved-capacity/*"
+        ],
+        "Sid": "CreateTrainingPlanPermissions"
+      },
+      {
+        "Action": [
+          "sagemaker:AddTags"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "sagemaker:TaggingAction": [
+              "CreateTrainingPlan",
+              "CreateReservedCapacity"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:sagemaker:*:*:training-plan/*",
+          "arn:aws:sagemaker:*:*:reserved-capacity/*"
+        ],
+        "Sid": "AddTagsToTrainingPlanPermissions"
+      },
+      {
+        "Action": [
+          "sagemaker:DescribeTrainingPlan"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:sagemaker:*:*:training-plan/*"
+        ],
+        "Sid": "DescribeTrainingPlanPermissions"
+      },
+      {
+        "Action": [
+          "sagemaker:SearchTrainingPlanOfferings",
+          "sagemaker:ListTrainingPlans"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "NonResourceLevelTrainingPlanPermissions"
+      },
+      {
+        "Action": [
+          "sagemaker:ListUltraServersByReservedCapacity"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:sagemaker:*:*:reserved-capacity/*"
+        ],
+        "Sid": "ListUltraServersByReservedCapacityPermissions"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Write",
+      "action": "sagemaker:CreateTrainingPlan",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "sagemaker:CreateTrainingPlan",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "sagemaker:CreateReservedCapacity",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "sagemaker:CreateReservedCapacity",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "sagemaker:DescribeReservedCapacity",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "sagemaker:DescribeReservedCapacity",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "sagemaker:AddTags",
+      "condition": {
+        "StringEquals": {
+          "sagemaker:TaggingAction": [
+            "CreateTrainingPlan",
+            "CreateReservedCapacity"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "sagemaker:AddTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "sagemaker:DescribeTrainingPlan",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "sagemaker:DescribeTrainingPlan",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "sagemaker:SearchTrainingPlanOfferings",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "sagemaker:SearchTrainingPlanOfferings",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "sagemaker:ListTrainingPlans",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "sagemaker:ListTrainingPlans",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "sagemaker:ListUltraServersByReservedCapacity",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "sagemaker:ListUltraServersByReservedCapacity",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AmazonSageMakerTrainingPlanCreateAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-12T18:03:21+00:00",
+  "version": "v6"
+}

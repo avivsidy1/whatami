@@ -1,0 +1,198 @@
+{
+  "access_levels": [
+    "List",
+    "Read"
+  ],
+  "arn": "arn:aws:iam::aws:policy/AWSCertificateManagerReadOnly",
+  "createdate": "2026-06-30T16:57:20+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "acm:DescribeCertificate",
+          "acm:ListCertificates",
+          "acm:SearchCertificates",
+          "acm:GetCertificate",
+          "acm:ListTagsForCertificate",
+          "acm:GetAccountConfiguration",
+          "acm:DescribeAcmeAccount",
+          "acm:DescribeAcmeDomainValidation",
+          "acm:DescribeAcmeEndpoint",
+          "acm:DescribeAcmeExternalAccountBinding",
+          "acm:ListAcmeAccounts",
+          "acm:ListAcmeDomainValidations",
+          "acm:ListAcmeEndpoints",
+          "acm:ListAcmeExternalAccountBindings",
+          "acm:ListTagsForResource"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Read",
+      "action": "acm:DescribeCertificate",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:DescribeCertificate",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "acm:ListCertificates",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:ListCertificates",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "acm:SearchCertificates",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:SearchCertificates",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "acm:GetCertificate",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:GetCertificate",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "acm:ListTagsForCertificate",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:ListTagsForCertificate",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "acm:GetAccountConfiguration",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:GetAccountConfiguration",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "acm:DescribeAcmeAccount",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:DescribeAcmeAccount",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "acm:DescribeAcmeDomainValidation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:DescribeAcmeDomainValidation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "acm:DescribeAcmeEndpoint",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:DescribeAcmeEndpoint",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "acm:DescribeAcmeExternalAccountBinding",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:DescribeAcmeExternalAccountBinding",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "acm:ListAcmeAccounts",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:ListAcmeAccounts",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "acm:ListAcmeDomainValidations",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:ListAcmeDomainValidations",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "acm:ListAcmeEndpoints",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:ListAcmeEndpoints",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "acm:ListAcmeExternalAccountBindings",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:ListAcmeExternalAccountBindings",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "acm:ListTagsForResource",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "acm:ListTagsForResource",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSCertificateManagerReadOnly",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-06-30T16:57:20+00:00",
+  "version": "v6"
+}

@@ -1,0 +1,269 @@
+{
+  "access_levels": [],
+  "arn": "arn:aws:iam::aws:policy/AWSDeepRacerDefaultMultiUserAccess",
+  "createdate": "2021-10-28T01:27:13+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "deepracer:Add*",
+          "deepracer:Remove*",
+          "deepracer:Create*",
+          "deepracer:Perform*",
+          "deepracer:Clone*",
+          "deepracer:Get*",
+          "deepracer:List*",
+          "deepracer:Edit*",
+          "deepracer:Start*",
+          "deepracer:Set*",
+          "deepracer:Update*",
+          "deepracer:Delete*",
+          "deepracer:Stop*",
+          "deepracer:Import*",
+          "deepracer:Tag*",
+          "deepracer:Untag*"
+        ],
+        "Condition": {
+          "Bool": {
+            "deepracer:MultiUser": "true"
+          },
+          "Null": {
+            "deepracer:UserToken": "false"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Action": [
+          "deepracer:GetAccountConfig",
+          "deepracer:GetTrack",
+          "deepracer:ListTracks",
+          "deepracer:TestRewardFunction"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ]
+      },
+      {
+        "Action": [
+          "deepracer:Admin*"
+        ],
+        "Effect": "Deny",
+        "Resource": [
+          "*"
+        ]
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSDeepRacerDefaultMultiUserAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [
+    {
+      "action": "deepracer:Add*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Remove*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Create*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Perform*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Clone*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Get*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:List*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Edit*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Start*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Set*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Update*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Delete*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Stop*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Import*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Tag*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:Untag*",
+      "condition": {
+        "Bool": {
+          "deepracer:MultiUser": "true"
+        },
+        "Null": {
+          "deepracer:UserToken": "false"
+        }
+      }
+    },
+    {
+      "action": "deepracer:GetAccountConfig",
+      "condition": null
+    },
+    {
+      "action": "deepracer:GetTrack",
+      "condition": null
+    },
+    {
+      "action": "deepracer:ListTracks",
+      "condition": null
+    },
+    {
+      "action": "deepracer:TestRewardFunction",
+      "condition": null
+    }
+  ],
+  "updatedate": "2021-10-28T01:27:13+00:00",
+  "version": "v1"
+}

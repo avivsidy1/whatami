@@ -1,0 +1,47 @@
+{
+  "access_levels": [],
+  "arn": "arn:aws:iam::aws:policy/AWSDeepRacerAccountAdminAccess",
+  "createdate": "2021-10-28T01:27:13+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "deepracer:*"
+        ],
+        "Condition": {
+          "Null": {
+            "deepracer:UserToken": "true"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": [
+          "*"
+        ],
+        "Sid": "DeepRacerAdminAccessStatement"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSDeepRacerAccountAdminAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [
+    {
+      "action": "deepracer:*",
+      "condition": {
+        "Null": {
+          "deepracer:UserToken": "true"
+        }
+      }
+    }
+  ],
+  "updatedate": "2021-10-28T01:27:13+00:00",
+  "version": "v1"
+}

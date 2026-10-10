@@ -1,0 +1,31 @@
+{
+  "access_levels": [],
+  "arn": "arn:aws:iam::aws:policy/AWSDenyAll",
+  "createdate": "2023-12-18T16:42:05+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "*"
+        ],
+        "Effect": "Deny",
+        "Resource": "*",
+        "Sid": "DenyAll"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [],
+  "grantless": true,
+  "malformed": false,
+  "name": "AWSDenyAll",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2023-12-18T16:42:05+00:00",
+  "version": "v2"
+}

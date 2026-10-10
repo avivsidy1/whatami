@@ -1,0 +1,1130 @@
+{
+  "access_levels": [
+    "List",
+    "Read",
+    "Tagging",
+    "Write",
+    "Permissions management"
+  ],
+  "arn": "arn:aws:iam::aws:policy/aws-service-role/AWSSSMForSAPServiceLinkedRolePolicy",
+  "createdate": "2026-02-12T18:03:20+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "ec2:DescribeInstances",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeInstanceTypes",
+          "ec2:DescribeVolumes",
+          "ec2:DescribeInstanceAttribute",
+          "ec2:DescribeSnapshots",
+          "ec2:DescribeVpcs",
+          "ssm:GetCommandInvocation",
+          "ssm:DescribeInstanceInformation"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "DescribeInstanceActions"
+      },
+      {
+        "Action": [
+          "ec2:DescribeInstanceStatus"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "DescribeInstanceStatus"
+      },
+      {
+        "Action": [
+          "events:DeleteRule",
+          "events:PutTargets",
+          "events:DescribeRule",
+          "events:PutRule",
+          "events:RemoveTargets"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:*:events:*:*:rule/SSMSAPManagedRule*",
+          "arn:*:events:*:*:event-bus/default"
+        ],
+        "Sid": "TargetRuleActions"
+      },
+      {
+        "Action": [
+          "ssm:DescribeDocument",
+          "ssm:SendCommand"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:*:ssm:*:*:document/AWSSystemsManagerSAP-*",
+          "arn:*:ssm:*:*:document/AWSSSMSAP*",
+          "arn:*:ssm:*:*:document/AWSSAP*"
+        ],
+        "Sid": "DocumentActions"
+      },
+      {
+        "Action": [
+          "ssm:SendCommand"
+        ],
+        "Condition": {
+          "StringEqualsIgnoreCase": {
+            "ssm:resourceTag/SSMForSAPManaged": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:ec2:*:*:instance/*",
+        "Sid": "CustomerSendCommand"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ],
+        "Condition": {
+          "Null": {
+            "aws:RequestTag/awsApplication": "false"
+          },
+          "StringEqualsIgnoreCase": {
+            "ec2:ResourceTag/SSMForSAPManaged": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:ec2:*:*:instance/*",
+        "Sid": "InstanceTagActions"
+      },
+      {
+        "Action": [
+          "ec2:DescribeTags"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "DescribeTag"
+      },
+      {
+        "Action": [
+          "servicecatalog:GetApplication"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:*:servicecatalog:*:*:*",
+        "Sid": "GetApplication"
+      },
+      {
+        "Action": [
+          "servicecatalog:DeleteApplication",
+          "servicecatalog:UpdateApplication"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:ResourceTag/SSMForSAPCreated": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:servicecatalog:*:*:*",
+        "Sid": "UpdateOrDeleteApplication"
+      },
+      {
+        "Action": [
+          "servicecatalog:TagResource",
+          "servicecatalog:CreateApplication"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:RequestTag/SSMForSAPCreated": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:servicecatalog:*:*:*",
+        "Sid": "CreateApplication"
+      },
+      {
+        "Action": [
+          "iam:CreateServiceLinkedRole"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "iam:AWSServiceName": "servicecatalog-appregistry.amazonaws.com"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:iam::*:role/aws-service-role/servicecatalog-appregistry.amazonaws.com/AWSServiceRoleForAWSServiceCatalogAppRegistry",
+        "Sid": "CreateServiceLinkedRole"
+      },
+      {
+        "Action": [
+          "cloudwatch:PutMetricData"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "cloudwatch:namespace": [
+              "AWS/Usage",
+              "AWS/SSMForSAP"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "PutMetricData"
+      },
+      {
+        "Action": [
+          "servicecatalog:CreateAttributeGroup"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:RequestTag/SSMForSAPCreated": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:servicecatalog:*:*:/attribute-groups/*",
+        "Sid": "CreateAttributeGroup"
+      },
+      {
+        "Action": [
+          "servicecatalog:GetAttributeGroup"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:*:servicecatalog:*:*:/attribute-groups/*",
+        "Sid": "GetAttributeGroup"
+      },
+      {
+        "Action": [
+          "servicecatalog:DeleteAttributeGroup"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:ResourceTag/SSMForSAPCreated": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:servicecatalog:*:*:/attribute-groups/*",
+        "Sid": "DeleteAttributeGroup"
+      },
+      {
+        "Action": [
+          "servicecatalog:AssociateAttributeGroup",
+          "servicecatalog:DisassociateAttributeGroup"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:ResourceTag/SSMForSAPCreated": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:servicecatalog:*:*:*",
+        "Sid": "AttributeGroupActions"
+      },
+      {
+        "Action": [
+          "servicecatalog:ListAssociatedAttributeGroups"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:*:servicecatalog:*:*:*",
+        "Sid": "ListAssociatedAttributeGroups"
+      },
+      {
+        "Action": [
+          "resource-groups:CreateGroup",
+          "resource-groups:Tag"
+        ],
+        "Condition": {
+          "ForAllValues:StringEquals": {
+            "aws:TagKeys": [
+              "SSMForSAPCreated"
+            ]
+          },
+          "StringEquals": {
+            "aws:ResourceTag/SSMForSAPCreated": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:resource-groups:*:*:group/SystemsManagerForSAP-*",
+        "Sid": "CreateGroup"
+      },
+      {
+        "Action": [
+          "resource-groups:GetGroup"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:*:resource-groups:*:*:group/SystemsManagerForSAP-*",
+        "Sid": "GetGroup"
+      },
+      {
+        "Action": [
+          "resource-groups:DeleteGroup"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:ResourceTag/SSMForSAPCreated": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:resource-groups:*:*:group/SystemsManagerForSAP-*",
+        "Sid": "DeleteGroup"
+      },
+      {
+        "Action": [
+          "resource-groups:CreateGroup"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:RequestTag/EnableAWSServiceCatalogAppRegistry": "true"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:resource-groups:*:*:group/AWS_AppRegistry_AppTag_*",
+        "Sid": "CreateAppTagResourceGroup"
+      },
+      {
+        "Action": [
+          "resource-groups:Tag"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "aws:ResourceTag/EnableAWSServiceCatalogAppRegistry": "true"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:resource-groups:*:*:group/AWS_AppRegistry_AppTag_*",
+        "Sid": "TagAppTagResourceGroup"
+      },
+      {
+        "Action": [
+          "resource-groups:GetGroupConfiguration"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:*:resource-groups:*:*:group/AWS_AppRegistry_AppTag_*"
+        ],
+        "Sid": "GetAppTagResourceGroupConfig"
+      },
+      {
+        "Action": [
+          "ec2:StartInstances",
+          "ec2:StopInstances"
+        ],
+        "Condition": {
+          "StringEqualsIgnoreCase": {
+            "ec2:resourceTag/SSMForSAPManaged": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:*:ec2:*:*:instance/*",
+        "Sid": "StartStopInstances"
+      },
+      {
+        "Action": [
+          "resource-groups:Tag",
+          "resource-groups:CreateGroup"
+        ],
+        "Condition": {
+          "ForAllValues:StringEquals": {
+            "aws:TagKeys": [
+              "SSMForSAPCreated"
+            ]
+          },
+          "StringEquals": {
+            "aws:RequestTag/SSMForSAPCreated": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:resource-groups:*:*:group/SystemsManagerForSAP-*",
+        "Sid": "SsmSapResourceGroup"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ],
+        "Condition": {
+          "ForAllValues:StringLike": {
+            "aws:TagKeys": [
+              "SystemsManagerForSAP-*"
+            ]
+          },
+          "StringEquals": {
+            "aws:ResourceTag/SSMForSAPManaged": "True"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*:*:instance/*",
+        "Sid": "ManageSsmSapTagsOnEc2Instances"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ],
+        "Condition": {
+          "ForAllValues:StringLike": {
+            "aws:TagKeys": [
+              "SystemsManagerForSAP-*"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*:*:volume/*",
+        "Sid": "ManageSsmSapTagsOnEbsVolumes"
+      },
+      {
+        "Action": [
+          "ec2:CreateTags",
+          "ec2:DeleteTags"
+        ],
+        "Condition": {
+          "ArnLike": {
+            "aws:RequestTag/awsApplication": "arn:aws:resource-groups:*:*:group/*/*"
+          },
+          "ForAllValues:StringEquals": {
+            "aws:TagKeys": [
+              "awsApplication"
+            ]
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "arn:aws:ec2:*:*:volume/*",
+        "Sid": "ManageAppTagsOnEbsVolumes"
+      },
+      {
+        "Action": [
+          "ce:ListCostAllocationTags",
+          "ce:UpdateCostAllocationTagsStatus",
+          "ce:ListCostAllocationTagBackfillHistory",
+          "ce:StartCostAllocationTagBackfill"
+        ],
+        "Effect": "Allow",
+        "Resource": "*",
+        "Sid": "ManageCostAllocationTags"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstances",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeRouteTables",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeRouteTables",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstanceTypes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstanceTypes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeVolumes",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeVolumes",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstanceAttribute",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstanceAttribute",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeSnapshots",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeSnapshots",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeVpcs",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeVpcs",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "ssm:GetCommandInvocation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:GetCommandInvocation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "ssm:DescribeInstanceInformation",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:DescribeInstanceInformation",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeInstanceStatus",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeInstanceStatus",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "events:DeleteRule",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "events:DeleteRule",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "events:PutTargets",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "events:PutTargets",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "events:DescribeRule",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "events:DescribeRule",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "events:PutRule",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "events:PutRule",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "events:RemoveTargets",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "events:RemoveTargets",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "ssm:DescribeDocument",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:DescribeDocument",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ssm:SendCommand",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:SendCommand",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ssm:SendCommand",
+      "condition": {
+        "StringEqualsIgnoreCase": {
+          "ssm:resourceTag/SSMForSAPManaged": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ssm:SendCommand",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "Null": {
+          "aws:RequestTag/awsApplication": "false"
+        },
+        "StringEqualsIgnoreCase": {
+          "ec2:ResourceTag/SSMForSAPManaged": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:DeleteTags",
+      "condition": {
+        "Null": {
+          "aws:RequestTag/awsApplication": "false"
+        },
+        "StringEqualsIgnoreCase": {
+          "ec2:ResourceTag/SSMForSAPManaged": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DeleteTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ec2:DescribeTags",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DescribeTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "servicecatalog:GetApplication",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:GetApplication",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "servicecatalog:DeleteApplication",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:DeleteApplication",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "servicecatalog:UpdateApplication",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:UpdateApplication",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "servicecatalog:TagResource",
+      "condition": {
+        "StringEquals": {
+          "aws:RequestTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:TagResource",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "servicecatalog:CreateApplication",
+      "condition": {
+        "StringEquals": {
+          "aws:RequestTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:CreateApplication",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "iam:CreateServiceLinkedRole",
+      "condition": {
+        "StringEquals": {
+          "iam:AWSServiceName": "servicecatalog-appregistry.amazonaws.com"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:CreateServiceLinkedRole",
+      "privesc": true,
+      "resource_exposure": true
+    },
+    {
+      "access_level": "Write",
+      "action": "cloudwatch:PutMetricData",
+      "condition": {
+        "StringEquals": {
+          "cloudwatch:namespace": [
+            "AWS/Usage",
+            "AWS/SSMForSAP"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloudwatch:PutMetricData",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "servicecatalog:CreateAttributeGroup",
+      "condition": {
+        "StringEquals": {
+          "aws:RequestTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:CreateAttributeGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "servicecatalog:GetAttributeGroup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:GetAttributeGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "servicecatalog:DeleteAttributeGroup",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:DeleteAttributeGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "servicecatalog:AssociateAttributeGroup",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:AssociateAttributeGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "servicecatalog:DisassociateAttributeGroup",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:DisassociateAttributeGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "servicecatalog:ListAssociatedAttributeGroups",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "servicecatalog:ListAssociatedAttributeGroups",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "resource-groups:CreateGroup",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "SSMForSAPCreated"
+          ]
+        },
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:CreateGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "resource-groups:Tag",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "SSMForSAPCreated"
+          ]
+        },
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:Tag",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "resource-groups:GetGroup",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:GetGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "resource-groups:DeleteGroup",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:DeleteGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "resource-groups:CreateGroup",
+      "condition": {
+        "StringEquals": {
+          "aws:RequestTag/EnableAWSServiceCatalogAppRegistry": "true"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:CreateGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "resource-groups:Tag",
+      "condition": {
+        "StringEquals": {
+          "aws:ResourceTag/EnableAWSServiceCatalogAppRegistry": "true"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:Tag",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "resource-groups:GetGroupConfiguration",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:GetGroupConfiguration",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:StartInstances",
+      "condition": {
+        "StringEqualsIgnoreCase": {
+          "ec2:resourceTag/SSMForSAPManaged": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:StartInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ec2:StopInstances",
+      "condition": {
+        "StringEqualsIgnoreCase": {
+          "ec2:resourceTag/SSMForSAPManaged": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:StopInstances",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "resource-groups:Tag",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "SSMForSAPCreated"
+          ]
+        },
+        "StringEquals": {
+          "aws:RequestTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:Tag",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "resource-groups:CreateGroup",
+      "condition": {
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "SSMForSAPCreated"
+          ]
+        },
+        "StringEquals": {
+          "aws:RequestTag/SSMForSAPCreated": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "resource-groups:CreateGroup",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "ForAllValues:StringLike": {
+          "aws:TagKeys": [
+            "SystemsManagerForSAP-*"
+          ]
+        },
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPManaged": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:DeleteTags",
+      "condition": {
+        "ForAllValues:StringLike": {
+          "aws:TagKeys": [
+            "SystemsManagerForSAP-*"
+          ]
+        },
+        "StringEquals": {
+          "aws:ResourceTag/SSMForSAPManaged": "True"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DeleteTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "ForAllValues:StringLike": {
+          "aws:TagKeys": [
+            "SystemsManagerForSAP-*"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:DeleteTags",
+      "condition": {
+        "ForAllValues:StringLike": {
+          "aws:TagKeys": [
+            "SystemsManagerForSAP-*"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DeleteTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:CreateTags",
+      "condition": {
+        "ArnLike": {
+          "aws:RequestTag/awsApplication": "arn:aws:resource-groups:*:*:group/*/*"
+        },
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "awsApplication"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:CreateTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Tagging",
+      "action": "ec2:DeleteTags",
+      "condition": {
+        "ArnLike": {
+          "aws:RequestTag/awsApplication": "arn:aws:resource-groups:*:*:group/*/*"
+        },
+        "ForAllValues:StringEquals": {
+          "aws:TagKeys": [
+            "awsApplication"
+          ]
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ec2:DeleteTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ce:ListCostAllocationTags",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ce:ListCostAllocationTags",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ce:UpdateCostAllocationTagsStatus",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ce:UpdateCostAllocationTagsStatus",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "List",
+      "action": "ce:ListCostAllocationTagBackfillHistory",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ce:ListCostAllocationTagBackfillHistory",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Write",
+      "action": "ce:StartCostAllocationTagBackfill",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "ce:StartCostAllocationTagBackfill",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSSSMForSAPServiceLinkedRolePolicy",
+  "privesc": true,
+  "resource_exposure": true,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-02-12T18:03:20+00:00",
+  "version": "v21"
+}

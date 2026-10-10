@@ -1,0 +1,45 @@
+{
+  "access_levels": [],
+  "arn": null,
+  "createdate": "2018-05-11T21:49:24Z",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": true,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "iot1click:Describe*",
+          "iot1click:Get*",
+          "iot1click:List*"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [],
+  "grantless": false,
+  "malformed": false,
+  "name": "AWSIoT1ClickReadOnlyAccess",
+  "privesc": false,
+  "resource_exposure": false,
+  "undocumented_actions": false,
+  "unknown_actions": [
+    {
+      "action": "iot1click:Describe*",
+      "condition": null
+    },
+    {
+      "action": "iot1click:Get*",
+      "condition": null
+    },
+    {
+      "action": "iot1click:List*",
+      "condition": null
+    }
+  ],
+  "updatedate": null,
+  "version": "v1"
+}

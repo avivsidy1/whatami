@@ -1,0 +1,140 @@
+{
+  "access_levels": [
+    "Read",
+    "Write",
+    "Permissions management"
+  ],
+  "arn": "arn:aws:iam::aws:policy/aws-service-role/CustomerProfilesServiceLinkedRolePolicy",
+  "createdate": "2026-03-05T21:12:08+00:00",
+  "credentials_exposure": false,
+  "data_access": false,
+  "deprecated": false,
+  "document": {
+    "Statement": [
+      {
+        "Action": [
+          "cloudwatch:PutMetricData"
+        ],
+        "Condition": {
+          "StringEquals": {
+            "cloudwatch:namespace": "AWS/CustomerProfiles"
+          }
+        },
+        "Effect": "Allow",
+        "Resource": "*"
+      },
+      {
+        "Action": [
+          "iam:DeleteRole"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:iam::*:role/aws-service-role/profile.amazonaws.com/AWSServiceRoleForProfile_*"
+      },
+      {
+        "Action": [
+          "connect-campaigns:PutProfileOutboundRequestBatch"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:connect-campaigns:*:*:campaign/*"
+        ]
+      },
+      {
+        "Action": [
+          "profile:BatchGetProfile",
+          "profile:GetRecommender",
+          "profile:GetCalculatedAttributeForProfile",
+          "profile:GetProfileRecommendations"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      }
+    ],
+    "Version": "2012-10-17"
+  },
+  "effective_actions": [
+    {
+      "access_level": "Write",
+      "action": "cloudwatch:PutMetricData",
+      "condition": {
+        "StringEquals": {
+          "cloudwatch:namespace": "AWS/CustomerProfiles"
+        }
+      },
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "cloudwatch:PutMetricData",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Permissions management",
+      "action": "iam:DeleteRole",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "iam:DeleteRole",
+      "privesc": false,
+      "resource_exposure": true
+    },
+    {
+      "access_level": "Write",
+      "action": "connect-campaigns:PutProfileOutboundRequestBatch",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "connect-campaigns:PutProfileOutboundRequestBatch",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "profile:BatchGetProfile",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "profile:BatchGetProfile",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "profile:GetRecommender",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "profile:GetRecommender",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "profile:GetCalculatedAttributeForProfile",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "profile:GetCalculatedAttributeForProfile",
+      "privesc": false,
+      "resource_exposure": false
+    },
+    {
+      "access_level": "Read",
+      "action": "profile:GetProfileRecommendations",
+      "condition": null,
+      "credentials_exposure": false,
+      "data_access": false,
+      "effective_action": "profile:GetProfileRecommendations",
+      "privesc": false,
+      "resource_exposure": false
+    }
+  ],
+  "grantless": false,
+  "malformed": false,
+  "name": "CustomerProfilesServiceLinkedRolePolicy",
+  "privesc": false,
+  "resource_exposure": true,
+  "undocumented_actions": false,
+  "unknown_actions": [],
+  "updatedate": "2026-03-05T21:12:08+00:00",
+  "version": "v3"
+}

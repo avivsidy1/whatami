@@ -30,7 +30,7 @@ request targets such a fake resource, so **nothing real is created or deleted**.
 ## Install
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/avivsidy1/whatami.git
 cd whatami
 python -m venv .venv && . .venv/bin/activate     # optional
 pip install -r requirements.txt
